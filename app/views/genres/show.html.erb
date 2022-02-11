@@ -1,0 +1,22 @@
+<h1><%= @genre.name %>の部屋一覧</h1>
+
+<%= render 'rooms/error', room: @room %>
+
+<%= render 'rooms/new', room: @room %>
+
+<% @genre.rooms.each do |room| %>
+  <table>
+    <thead>
+      <th>部屋名</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to room_path(room.id) do %>
+            <%= room.name %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
