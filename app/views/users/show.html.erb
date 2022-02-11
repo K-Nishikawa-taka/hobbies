@@ -1,0 +1,14 @@
+<h1><%= @user.name %></h1>
+<div>
+  <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+</div>
+
+<table>
+  <%= @user.name %><br>
+  @<%= @user.personal_id %><br>
+  <%= @user.introduction %><br>
+<table>
+
+<% if @user == current_user %>
+  <%= link_to '編集', edit_user_path(current_user) %>
+<% end %>
