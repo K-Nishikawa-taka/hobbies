@@ -1,5 +1,11 @@
 <% if user_signed_in? %>
   <li>
+    <%= link_to 'ジャンル一覧', genres_path %>
+  </li>
+  <li>
+    <%= link_to '部屋一覧', rooms_path %>
+  </li>
+  <li>
     <%= link_to 'マイページ', user_path(current_user.id) %>
   </li>
   <li>

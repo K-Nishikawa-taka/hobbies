@@ -1,0 +1,8 @@
+<% if genre.errors.any? %>
+  <%= genre.errors.count %> errors occured
+  <% genre.errors.full_messages.each do |full_message| %>
+    <li>
+      <%= full_message %>
+    </li>
+  <% end %>
+<% end %>

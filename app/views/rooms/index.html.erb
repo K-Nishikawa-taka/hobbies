@@ -1,0 +1,24 @@
+<h1>部屋一覧</h1>
+
+<% @rooms.each do |room| %>
+  <table>
+    <thead>
+      <th>部屋名</th>
+      <th>ジャンル</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to room_path(room.id) do %>
+            <%= room.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to genre_path(room.genre.id) do %>
+            <%= room.genre.name %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
