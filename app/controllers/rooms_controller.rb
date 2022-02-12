@@ -4,7 +4,9 @@ class RoomsController < ApplicationController
   end
 
   def create
+    @genre = Genre.find(params[:room][:genre_id])
     @room = Room.new(room_params)
+    @room.genre_id = @genre.id
     if @room.save
       redirect_to genre_path(@genre.id)
     else
@@ -14,12 +16,13 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-  end
-  
+    @message = Message.new
+   end
+
   private
-  
+
   def room_params
     params.require(:room).permit(:name)
   end
-  
+
 end

@@ -1,0 +1,22 @@
+<h2>新規投稿</h2>
+
+<div>
+  
+  <%= form_with model: message, url: room_messages_path(room.id), local: true do |f| %>
+  
+  <div>
+    <%= f.text_field :words %>
+  </div>
+  
+  <div>
+    <%= f.attachment_field :post_image %>
+  </div>
+    
+  <div>
+    <%= f.submit '投稿' %>
+  </div>
+    
+  <% end %>
+  
+</div>
+  

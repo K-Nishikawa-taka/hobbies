@@ -2,7 +2,7 @@
 
 <%= render 'rooms/error', room: @room %>
 
-<%= render 'rooms/new', room: @room %>
+<%= render 'rooms/new', room: @room,  genre: @genre %>
 
 <% @genre.rooms.each do |room| %>
   <table>
