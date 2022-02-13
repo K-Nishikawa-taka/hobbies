@@ -12,3 +12,8 @@
 <% if @user == current_user %>
   <%= link_to '編集', edit_user_path(current_user) %>
 <% end %>
+
+<% @user.messages.each do |message| %>
+    <%= render 'messages/message', message: message %>
+    <%= link_to '詳細', room_message_path(message.room.id, message.id) %>
+<% end %>

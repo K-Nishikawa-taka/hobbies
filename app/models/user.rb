@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :messages, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  attachment :icon_image
 
   validates :name, presence: true
   validates :name, length: { in: 1..15 }
@@ -14,6 +16,5 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 150 }
   validates :email, presence: true
   validates :email, uniqueness: true
-  attachment :icon_image
 
 end

@@ -1,0 +1,21 @@
+<h2>返信投稿フォーム</h2>
+
+<%= form_with(model: [message, comment], url: room_message_comments_path(message.room.id, message.id), local: true) do |f| %>
+
+<div>
+
+  <div>
+    <%= f.text_area :words %>
+  </div>
+
+  <div>
+    <%= f.attachment_field :post_image %>
+  </div>
+
+  <div>
+    <%= f.submit '投稿' %>
+  </div>
+
+</div>
+
+<% end %>
