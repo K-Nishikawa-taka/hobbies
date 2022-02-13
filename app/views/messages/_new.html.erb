@@ -5,7 +5,7 @@
   <%= form_with model: message, url: room_messages_path(room.id), local: true do |f| %>
   
   <div>
-    <%= f.text_field :words %>
+    <%= f.text_area :words %>
   </div>
   
   <div>

@@ -1,2 +1,33 @@
-<h1>Commits#show</h1>
-<p>Find me in app/views/commits/show.html.erb</p>
+<%= render 'comments/error', comment: @comment %>
+
+<%= render 'comments/new', message: @message, comment: @comment %>
+
+<%= render 'messages/message', message: @message %>
+
+<% if @message.user == current_user %>
+  <%= link_to '削除', room_message_path(@message.room.id, @message.id), method: :delete %>
+<% end %>
+
+<% @message.comments.each do |comment| %>
+  <div>
+    <p><%= comment.words %></p>
+    <div>
+      <%= attachment_image_tag comment, :post_image, :fill, 200, 200 %>
+    </div>
+  </div>
+  <div>
+    <div>
+      <%= attachment_image_tag comment.user, :icon_image, :fill, 60, 60 %>
+    </div>
+    <div>
+      <p>
+        <%= link_to user_path(comment.user.id) do %>
+          <%= comment.user.name %>
+        <% end %>
+      </p>
+    </div>
+    <% if comment.user == current_user %>
+      <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete %>
+    <% end %>
+  </div>
+<% end %>
