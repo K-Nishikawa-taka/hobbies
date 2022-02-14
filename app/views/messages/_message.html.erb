@@ -20,7 +20,7 @@
 
 <div>
   <div>
-    <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100 %>
+    <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
   </div>
   <div>
     <%= link_to user_path(message.user.id) do %>
@@ -29,3 +29,5 @@
     <%= message.user.personal_id %>
   </div>
 </div>
+
+<%= render 'favorite_messages/favorite', message: message %>
