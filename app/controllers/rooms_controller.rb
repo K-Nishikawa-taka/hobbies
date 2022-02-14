@@ -18,6 +18,11 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @message = Message.new
   end
+  
+  def members
+    @room = Room.find(params[:id])
+    @favorite_rooms = FavoriteRoom.where(room_id: @room.id).all
+  end
 
   private
 

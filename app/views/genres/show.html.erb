@@ -2,6 +2,12 @@
 
 <%= render 'rooms/error', room: @room %>
 
+<div>
+  <%= link_to '参加者一覧', members_genre_path(@genre.id) %>
+</div>
+
+<%= render 'favorite_genres/favorite', genre: @genre %>
+
 <%= render 'rooms/new', room: @room,  genre: @genre %>
 
 <% @genre.rooms.each do |room| %>

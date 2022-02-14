@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorite_genres, dependent: :destroy
+  has_many :favorite_rooms, dependent: :destroy
+  has_many :favorite_messages, dependent: :destroy
   attachment :icon_image
 
   validates :name, presence: true

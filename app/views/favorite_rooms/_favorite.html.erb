@@ -1,0 +1,5 @@
+<% if room.favorited_by?(current_user) %>
+  <%= link_to 'お気に入り解除', room_favorite_rooms_path(room.id), method: :delete %>
+<% else %>
+  <%= link_to 'お気に入り', room_favorite_rooms_path(room.id), method: :post %>
+<% end %>
