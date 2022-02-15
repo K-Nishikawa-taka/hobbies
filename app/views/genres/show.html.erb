@@ -10,12 +10,12 @@
 
 <%= render 'rooms/new', room: @room,  genre: @genre %>
 
-<% @genre.rooms.each do |room| %>
-  <table>
-    <thead>
-      <th>部屋名</th>
-    </thead>
-    <tbody>
+<table>
+  <thead>
+    <th>部屋名</th>
+  </thead>
+  <tbody>
+    <% @genre.rooms.each do |room| %>
       <tr>
         <td>
           <%= link_to room_path(room.id) do %>
@@ -23,6 +23,6 @@
           <% end %>
         </td>
       </tr>
-    </tbody>
-  </table>
-<% end %>
+     <% end %> 
+  </tbody>
+</table>

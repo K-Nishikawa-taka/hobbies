@@ -25,6 +25,9 @@
           <%= comment.user.name %>
         <% end %>
       </p>
+      <p>
+        <%= comment.user.personal_id %>
+      </p>
     </div>
     <% if comment.user == current_user %>
       <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete %>

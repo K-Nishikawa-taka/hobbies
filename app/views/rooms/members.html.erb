@@ -2,7 +2,10 @@
 
 <table>
   <thead>
+    <th></th>
     <th>ユーザー名</th>
+    <th>個人コード</th>
+    <th>紹介文</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,9 +14,17 @@
     <% @favorite_rooms.each do |favorite_room| %>
       <tr>
         <td>
+          <div>
+            <%= attachment_image_tag favorite_room.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+          </div>
+        </td>
+        <td>
           <%= link_to user_path(favorite_room.user.id) do %>
             <%= favorite_room.user.name %>
           <% end %>
+        </td>
+        <td>
+          <%= favorite_room.user.personal_id %>
         </td>
         <td>
           <%= favorite_room.user.introduction %>
@@ -23,6 +34,9 @@
         </td>
         <td>
           <%= link_to 'お気に入り部屋', favorite_rooms_user_path(favorite_room.user.id) %>
+        </td>
+        <td>
+          <%= render 'relationships/follow_button', user: favorite_room.user %>
         </td>
       </tr>
    <% end %>
