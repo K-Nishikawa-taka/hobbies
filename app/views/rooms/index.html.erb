@@ -1,12 +1,13 @@
 <h1>部屋一覧</h1>
 
-<% @rooms.each do |room| %>
-  <table>
-    <thead>
-      <th>部屋名</th>
-      <th>ジャンル</th>
-    </thead>
-    <tbody>
+<table>
+  <thead>
+    <th>部屋名</th>
+    <th>ジャンル</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
       <tr>
         <td>
           <%= link_to room_path(room.id) do %>
@@ -18,7 +19,10 @@
             <%= room.genre.name %>
           <% end %>
         </td>
+        <td>
+          <%= link_to '参加者一覧', members_room_path(room.id) %>
+        </td>
       </tr>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>  
+  </tbody>
+</table>

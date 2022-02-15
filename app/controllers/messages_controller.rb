@@ -23,6 +23,11 @@ class MessagesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def favorite_users
+    @message = Message.find(params[:id])
+    @favorite_messages = FavoriteMessage.where(message_id: @message.id)
+  end
+
   private
 
   def message_params

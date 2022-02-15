@@ -1,5 +1,6 @@
 <% if message.favorited_by?(current_user) %>
-  <%= link_to 'お気に入り解除', room_message_favorite_messages_path(message.room.id, message.id), method: :delete %>
+  <%= link_to "♥ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :delete %>
 <% else %>
-  <%= link_to 'お気に入り', room_message_favorite_messages_path(message.room.id, message.id), method: :post %>
+  <%= link_to "♡ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :post %>
 <% end %>
+<%= link_to 'お気に入りユーザー一覧', favorite_users_room_message_path(message.room.id, message.id) %>
