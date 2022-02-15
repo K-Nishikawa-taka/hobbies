@@ -2,6 +2,7 @@
   <%= link_to '趣味の間', root_path %>
 </h1>
 <% if user_signed_in? %>
+  <%= render 'searches/search_form' %> 
   <ul>
     <%= link_to 'ジャンル一覧', genres_path %>
   </ul>
