@@ -1,4 +1,4 @@
-<h1><%= @range %>の検索結果</h1>
+<h1><%= params[:key_word] %>の検索結果</h1>
 
 <% if @range == 'Genre' %>
   <table>
@@ -37,7 +37,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to genre_path(genre.room.id) do %>
+            <%= link_to genre_path(room.genre.id) do %>
               <%= room.genre.name %>
             <% end %>
           </td>
