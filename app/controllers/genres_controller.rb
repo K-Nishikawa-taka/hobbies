@@ -23,6 +23,15 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).all
   end
+  
+  #管理者のみが使用可能
+  def destroy
+    if current_user.admin?
+      genre = Genre.find(params[:id])
+      genre.destroy
+      redirect_to genres_path
+    end
+  end
 
   private
 

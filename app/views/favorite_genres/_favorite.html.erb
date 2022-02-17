@@ -1,7 +1,10 @@
-<% if genre.favorited_by?(current_user) %>
-  <%= link_to 'お気に入り解除', genre_favorite_genres_path(genre.id), method: :delete %>
+<% if current_user.admin? %>
 <% else %>
-  <%= link_to 'お気に入り', genre_favorite_genres_path(genre.id), method: :post %>
+  <% if genre.favorited_by?(current_user) %>
+    <%= link_to 'お気に入り解除', genre_favorite_genres_path(genre.id), method: :delete %>
+  <% else %>
+    <%= link_to 'お気に入り', genre_favorite_genres_path(genre.id), method: :post %>
+  <% end %>
 <% end %>
 
 <%= link_to 'お気に入りユーザー一覧', members_genre_path(genre.id) %>

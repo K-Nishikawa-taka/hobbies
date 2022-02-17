@@ -8,6 +8,10 @@
   <%= link_to '削除', room_message_path(@message.room.id, @message.id), method: :delete %>
 <% end %>
 
+<% if current_user.admin? %>
+  <%= link_to '削除', room_message_path(@message.room.id, @message.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
+
 <% @message.comments.each do |comment| %>
   <div>
     <p><%= comment.words %></p>
@@ -29,8 +33,14 @@
         <%= comment.user.personal_id %>
       </p>
     </div>
+    
     <% if comment.user == current_user %>
       <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete %>
     <% end %>
+    
+    <% if current_user.admin? %>
+      <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+    
   </div>
 <% end %>
