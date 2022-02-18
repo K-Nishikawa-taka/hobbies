@@ -8,6 +8,7 @@
   <thead>
     <th>ジャンル名</th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     <% @genres.each do |genre| %>
@@ -20,7 +21,13 @@
         <td>
           <%= link_to '参加者一覧', members_genre_path(genre.id) %>
         </td>
+        <% if current_user.admin? %>
+          <td>
+            <%= link_to '削除', genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          </td>
+        <% end %>
       </tr>
+      <tr
     <% end %>
   </tbody>
 </table>

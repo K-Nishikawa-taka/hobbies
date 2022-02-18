@@ -1,8 +1,18 @@
 <h1>
   <%= link_to '趣味の間', root_path %>
 </h1>
+
 <% if user_signed_in? %>
-  <%= render 'searches/search_form' %> 
+
+  <% if current_user.admin? %>
+    <p>管理者モード</p>
+  <% end %>
+
+  <%= render 'searches/search_form' %>
+
+  <ul>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  </ul>
   <ul>
     <%= link_to 'ジャンル一覧', genres_path %>
   </ul>
@@ -10,10 +20,13 @@
     <%= link_to '部屋一覧', rooms_path %>
   </ul>
   <ul>
-    <%= link_to 'マイページ', user_path(current_user.id) %>
-  </ul>
-  <ul>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% if current_user.admin? %>
+      <%= link_to 'ユーザー一覧', users_path %>
+    <% else %>
+      <%= link_to user_path(current_user.id) do %>
+        <%= current_user.name %>
+      <% end %>
+    <% end %>
   </ul>
 <% else %>
   <ul>

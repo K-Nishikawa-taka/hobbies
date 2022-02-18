@@ -5,6 +5,7 @@
     <th>部屋名</th>
     <th>ジャンル</th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     <% @rooms.each do |room| %>
@@ -22,7 +23,12 @@
         <td>
           <%= link_to '参加者一覧', members_room_path(room.id) %>
         </td>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to '削除', room_path(room.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </td>
       </tr>
-    <% end %>  
+    <% end %>
   </tbody>
 </table>

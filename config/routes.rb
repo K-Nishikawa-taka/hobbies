@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  devise_for :users
-  resources :users, only: [:show, :edit, :update] do
+  
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+  
+  
+  resources :users, only: [:show, :edit, :update, :index] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
@@ -10,16 +16,20 @@ Rails.application.routes.draw do
       get :favorite_rooms
       get :favorite_messages
     end
+    #退会確認画面
+    get 'confirm' => 'users#confirm', as: 'confirm'
+    #論理削除
+    patch 'withdraw' => 'users#withdraw', as: 'withdraw'
   end
 
-  resources :genres, only: [:index, :create, :show] do
+  resources :genres, only: [:index, :create, :show, :destroy] do
     resource :favorite_genres, only: [:create, :destroy]
     member do
       get :members
     end
   end
 
-  resources :rooms, only: [:index, :create, :show] do
+  resources :rooms, only: [:index, :create, :show, :destroy] do
     resource :favorite_rooms, only: [:create, :destroy]
     member do
       get :members

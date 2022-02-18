@@ -32,3 +32,16 @@
   <% end %>
 
 </div>
+
+<div>
+  <%= link_to '戻る', user_path(@user.id) %>
+</div>
+
+<% if current_user.admin %>
+<% else %>
+  <% if @user == current_user %>
+    <div>
+      <%= link_to '退会', user_confirm_path(current_user.id) %>
+    </div>
+  <% end %>
+<% end %>

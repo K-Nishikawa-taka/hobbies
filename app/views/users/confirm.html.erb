@@ -1,0 +1,12 @@
+<h1>本当に退会しますか？</h1>
+
+<div>
+  <%= link_to '退会しない', edit_user_path(current_user.id) %>
+</div>
+
+<% if current_user.admin? %>
+<% else %>
+  <div>
+    <%= link_to '退会する', user_withdraw_path(current_user.id), method: :patch %>
+  </div>
+<% end %>

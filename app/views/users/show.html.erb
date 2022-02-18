@@ -4,9 +4,22 @@
 </div>
 
 <table>
-  <%= @user.name %><br>
-  @<%= @user.personal_id %><br>
-  <%= @user.introduction %><br>
+ <tbody>
+   <td><%= @user.name %></td>
+   <td>@<%= @user.personal_id %></td>
+   <td><%= @user.introduction %></td>
+   <% if current_user.admin? %>
+     <%= form_with model: @user, method: :patch, local: true do |f| %>
+      <td>
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :登録中 %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :退会 %>
+        <%= f.submit '変更' %>
+      </td>
+     <% end %>
+    <% end %>
+  </tbody>
 <table>
   
 <div>
