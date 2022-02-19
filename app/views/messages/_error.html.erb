@@ -1,0 +1,8 @@
+<% if message.errors.any? %>
+  <%= message.errors.count %> errors occured
+  <% message.errors.full_messages.each do |full_message| %>
+    <li>
+      <%= full_message %>
+    </li>
+  <% end %>
+<% end %>

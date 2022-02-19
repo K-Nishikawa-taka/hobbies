@@ -1,0 +1,8 @@
+<h1><%= @user.name %>のお気に入り投稿一覧</h1>
+
+<div>
+  <% @favorite_messages.each do |favorite_message| %>
+    <%= render 'messages/message', message: favorite_message.message %>
+    <%= link_to '詳細', room_message_path(favorite_message.message.room.id, favorite_message.message.id) %>
+  <% end %>
+</div>

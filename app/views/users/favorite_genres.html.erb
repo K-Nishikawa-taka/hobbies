@@ -1,0 +1,22 @@
+<h1><%= @user.name %>のお気に入りジャンル一覧</h1>
+
+<table>
+  <thead>
+    <th>ジャンル名</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @favorite_genres.each do |favorite_genre| %>
+      <tr>
+        <td>
+          <%= link_to genre_path(favorite_genre.genre.id) do %>
+            <%= favorite_genre.genre.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= render 'favorite_genres/favorite', genre: favorite_genre.genre %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

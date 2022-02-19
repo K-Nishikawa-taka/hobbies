@@ -1,0 +1,42 @@
+<h1><%= @genre.name %>をお気に入りしたユーザー一覧</h1>
+
+<table>
+  <thead>
+    <th></th>
+    <th>ユーザー名</th>
+    <th>個人コード</th>
+    <th>紹介文</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @favorite_genres.each do |favorite_genre| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+        </td>
+        <td>
+          <%= link_to user_path(favorite_genre.user.id) do %>
+            <%= favorite_genre.user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= favorite_genre.user.personal_id %>
+        </td>
+        <td>
+          <%= favorite_genre.user.introduction %>
+        </td>
+        <td>
+          <%= link_to 'お気に入りジャンル', favorite_genres_user_path(favorite_genre.user.id) %>
+        </td>
+        <td>
+          <%= link_to 'お気に入り部屋', favorite_rooms_user_path(favorite_genre.user.id) %>
+        </td>
+        <td>
+            <%= render 'relationships/follow_button', user: favorite_genre.user %>
+        </td>
+      </tr>
+   <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+<h2>新規部屋作成</h2>
+
+<div>
+  
+  <%= form_with model: room, local: true do |f| %>
+
+  <%= f.hidden_field :genre_id, value: genre.id %>
+
+  <div>
+    <%= f.label :部屋名 %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit '作成' %>
+  </div>
+
+  <% end %>
+
+</div>
