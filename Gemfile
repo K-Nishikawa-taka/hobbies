@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -57,4 +58,7 @@ gem 'kaminari'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 
-gem 'pry-byebug'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
