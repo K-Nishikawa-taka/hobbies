@@ -1,0 +1,59 @@
+<h1><%= @user.name %></h1>
+<div>
+  <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+</div>
+
+<table>
+ <tbody>
+   <td><%= @user.name %></td>
+   <td>@<%= @user.personal_id %></td>
+   <td><%= @user.introduction %></td>
+   <% if current_user.admin? %>
+     <%= form_with model: @user, method: :patch, local: true do |f| %>
+      <td>
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :登録中 %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :退会 %>
+        <%= f.submit '変更' %>
+      </td>
+     <% end %>
+    <% end %>
+  </tbody>
+<table>
+  
+<div>
+  <%= link_to 'お気に入りジャンル一覧', favorite_genres_user_path(@user.id) %>
+</div>
+
+<div>
+  <%= link_to 'お気に入り部屋一覧', favorite_rooms_user_path(@user.id) %>
+</div>
+
+<div>
+  <%= link_to 'お気に入り投稿一覧', favorite_messages_user_path(@user.id) %>
+</div>
+
+<div>
+  <%= link_to 'フォロー一覧', user_followings_path(@user.id) %>
+</div>
+
+<div>
+  <%= link_to 'フォロワー一覧', user_followers_path(@user.id) %>
+</div>
+
+<% if @user == current_user %>
+  <div>
+    <%= link_to '編集', edit_user_path(current_user) %>
+  </div>
+<% else %>
+  <%= render 'relationships/follow_button', user: @user %>
+<% end %>
+
+
+<% @user.messages.each do |message| %>
+  <%= render 'messages/message', message: message %>
+  <div>
+    <%= link_to '詳細', room_message_path(message.room.id, message.id) %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<h2>新規ジャンル作成</h2>
+
+<div>
+  
+  <%= form_with model: genre, local: true do |f| %>
+
+  <div>
+    <%= f.label :ジャンル名 %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div>
+    <%= f.submit '作成' %>
+  </div>
+  
+  <% end %>
+
+</div>

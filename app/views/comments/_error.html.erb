@@ -1,0 +1,8 @@
+<% if comment.errors.any? %>
+  <%= comment.errors.count %> errors occured
+  <% comment.errors.full_messages.each do |full_message| %>
+    <li>
+      <%= full_message %>
+    </li>
+  <% end %>
+<% end %>
