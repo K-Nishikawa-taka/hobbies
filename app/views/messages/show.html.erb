@@ -18,6 +18,9 @@
     <div>
       <%= attachment_image_tag comment, :post_image, :fill, 200, 200 %>
     </div>
+    <div>
+      <%= comment.created_at.to_s(:datetime_jp) %>
+    </div>
   </div>
   <div>
     <div>
@@ -32,15 +35,31 @@
       <p>
         <%= comment.user.personal_id %>
       </p>
+      <div>
+        <% if current_user == @message.user %>
+          <% if comment.is_read == false %>
+            <%= button_to "既読",room_message_comment_read_path(comment.message.room.id, comment.message.id, comment.id), method: :patch %>
+          <% else %>
+            <p>既読</p>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <% if current_user == comment.user %>
+          <% if comment.is_read == true %>
+            <p>既読</p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    
+
     <% if comment.user == current_user %>
       <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete %>
     <% end %>
-    
+
     <% if current_user.admin? %>
       <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
-    
+
   </div>
 <% end %>

@@ -19,6 +19,10 @@
 </div>
 
 <div>
+  <%= message.created_at.to_s(:datetime_jp) %>
+</div>
+
+<div>
   <div>
     <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
   </div>
@@ -30,4 +34,6 @@
   </div>
 </div>
 
-<%= render 'favorite_messages/favorite', message: message %>
+<div id="favorite_button_<%= message.id %>">
+  <%= render 'favorite_messages/favorite', message: message %>
+</div>

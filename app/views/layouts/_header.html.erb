@@ -1,38 +1,37 @@
-<h1>
-  <%= link_to '趣味の間', root_path %>
-</h1>
+<nav class="navvar navbar-expand-lg navbar-light">
+  <div class="container ">
+    <a class="navbar-brand p-3" href="/">趣味の間</a>
+    
+    <% if user_signed_in? %>
 
-<% if user_signed_in? %>
-
-  <% if current_user.admin? %>
-    <p>管理者モード</p>
-  <% end %>
-
-  <%= render 'searches/search_form' %>
-
-  <ul>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-  </ul>
-  <ul>
-    <%= link_to 'ジャンル一覧', genres_path %>
-  </ul>
-  <ul>
-    <%= link_to '部屋一覧', rooms_path %>
-  </ul>
-  <ul>
-    <% if current_user.admin? %>
-      <%= link_to 'ユーザー一覧', users_path %>
-    <% else %>
-      <%= link_to user_path(current_user.id) do %>
-        <%= current_user.name %>
+      <% if current_user.admin? %>
+        <p class="text-center">管理者モード</p>
       <% end %>
+
+    <div class="mx-auto">
+      <%= render 'searches/search_form' %>
+    </div>
+
+      <ul class="navbar-nav ml-auto, float-right">
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
+        <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>
+        <li><%= link_to '部屋一覧', rooms_path, class: 'm-3 p-2 border border-5' %></li>
+        <% if current_user.admin? %>
+          <li><%= link_to 'ユーザー一覧', users_path, class: 'm-3 p-2 border border-5' %></li>
+        <% else %>
+          <li>
+            <%= link_to user_path(current_user.id), class: 'm-3 p-2 border border-5' do %>
+              <%= current_user.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    
+    <% else %>
+      <ul class="navbar-nav ml-auto, float-right">
+        <li><%= link_to '新規登録', new_user_registration_path, class: 'm-3 p-2 border border-5'  %></li>
+        <li><%= link_to 'ログイン', new_user_session_path, class: 'm-3 p-2 border border-5'  %></li>
     <% end %>
-  </ul>
-<% else %>
-  <ul>
-    <%= link_to '新規登録', new_user_registration_path %>
-  </ul>
-  <ul>
-    <%= link_to 'ログイン', new_user_session_path %>
-  </li>
-<% end %>
+    
+  </div>
+</nav>

@@ -2,9 +2,9 @@
   ♡<%= message.favorite_messages.count %>
 <% else %>
   <% if message.favorited_by?(current_user) %>
-    <%= link_to "♥ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :delete %>
+    <%= link_to "♥ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
   <% else %>
-    <%= link_to "♡ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :post %>
+    <%= link_to "♡ #{message.favorite_messages.count}", room_message_favorite_messages_path(message.room.id, message.id), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %>
   <% end %>
 <% end %>
 <%= link_to 'お気に入りユーザー一覧', favorite_users_room_message_path(message.room.id, message.id) %>
