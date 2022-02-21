@@ -4,6 +4,7 @@
   <thead>
     <th>部屋名</th>
     <th>ジャンル</th>
+    <th>更新日</th>
     <th></th>
     <th></th>
   </thead>
@@ -19,6 +20,9 @@
           <%= link_to genre_path(room.genre.id) do %>
             <%= room.genre.name %>
           <% end %>
+        </td>
+        <td>
+          <%= room.updated_at.to_s(:datetime_jp) %>
         </td>
         <td>
           <%= link_to '参加者一覧', members_room_path(room.id) %>

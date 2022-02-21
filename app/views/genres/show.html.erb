@@ -13,6 +13,7 @@
 <table>
   <thead>
     <th>部屋名</th>
+    <th>更新日</th>
     <th></th>
   </thead>
   <tbody>
@@ -22,6 +23,9 @@
           <%= link_to room_path(room.id) do %>
             <%= room.name %>
           <% end %>
+        </td>
+        <td>
+          <%= room.updated_at.to_s(:datetime_jp) %>
         </td>
         <td>
           <% if current_user.admin? %>

@@ -4,6 +4,7 @@
   <table>
     <thead>
       <th>ジャンル名</th>
+      <th>更新日</th>
       <th></th>
     </thead>
     <tbody>
@@ -13,6 +14,9 @@
             <%= link_to genre_path(genre.id) do %>
               <%= genre.name %>
             <% end %>
+          </td>
+          <td>
+            <%= genre.updated_at.to_s(:datetime_jp) %>
           </td>
           <td>
             <%= link_to '参加者一覧', members_genre_path(genre.id) %>
@@ -26,6 +30,7 @@
     <thead>
       <th>部屋名</th>
       <th>ジャンル名</th>
+      <th>更新日</th>
       <th></th>
     </thead>
     <tbody>
@@ -40,6 +45,9 @@
             <%= link_to genre_path(room.genre.id) do %>
               <%= room.genre.name %>
             <% end %>
+          </td>
+          <td>
+            <%= room.updated_at.to_s(:datetime_jp)
           </td>
           <td>
             <%= link_to '参加者一覧', members_room_path(room.id) %>

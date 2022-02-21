@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-  
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
-  
+
+
   resources :users, only: [:show, :edit, :update, :index] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
@@ -40,9 +40,10 @@ Rails.application.routes.draw do
         get :favorite_users
       end
       resources :comments, only: [:create, :destroy]
+      patch 'comments/:id/read' => 'comments#read', as: 'comment_read'
     end
   end
-  
+
   get 'search' => 'searches#search', as: 'search'
 
 end
