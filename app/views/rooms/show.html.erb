@@ -1,16 +1,41 @@
-<h1><%= @room.name %>の投稿一覧</h1>
+<div class="container">
+  
+  <div class="row mt-2">
+    
+    <h1><%= @room.name %>の投稿一覧</h1>
+    
+  </div>
+  
+  <div class="row mt-2">
+    
+    <div class="p-2 my-auto">
+      <%= link_to '参加者一覧', members_room_path(@room.id) %>
+    </div>
+    
+    <div class="p-2 my-auto">  
+      <%= render 'favorite_rooms/favorite', room: @room %>
+    </div>
+    
+  </div>
+  
+  <div class="row mt-2">
+    
+    <div class="col-4">
+    
+      <%= render 'messages/error', message: @message %>
+      
+      <%= render 'messages/new', message: @message, room: @room %>
+      
+    </div>
+    
+    <div class="col-6 offset-md-1">
+    
+      <% @room.messages.each do |message| %>
+        <%= render 'messages/message', message: message %>
+      <% end %>
+      
+    </div>
+  
+  </div>
 
-<%= render 'messages/error', message: @message %>
-
-<div>
-  <%= link_to '参加者一覧', members_room_path(@room.id) %>
 </div>
-
-<%= render 'favorite_rooms/favorite', room: @room %>
-
-<%= render 'messages/new', message: @message, room: @room %>
-
-<% @room.messages.each do |message| %>
-    <%= render 'messages/message', message: message %>
-    <%= link_to '詳細', room_message_path(@room.id, message.id) %>
-<% end %>

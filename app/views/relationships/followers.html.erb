@@ -1,42 +1,46 @@
-<h1><%= @user.name %>のフォロワー一覧</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <th></th>
-    <th>ユーザー名</th>
-    <th>個人コード</th>
-    <th>紹介文</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </thead>
-<% @users.each do |user| %>
-  <tr>
-    <td>
-      <div>
-        <%= attachment_image_tag user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
-      </div>
-    </td>
-    <td>
-      <%= link_to user_path(user.id) do %>
-        <%= user.name %>
-      <% end %>
-    </td>
-    <td>
-      <%= user.personal_id %>
-    </td>
-    <td>
-      <%= user.introduction %>
-    </td>
-    <td>
-      <%= link_to '登録ジャンル', favorite_genres_user_path(user.id) %>
-    </td>
-    <td>
-      <%= link_to '登録部屋', favorite_rooms_user_path(user.id) %>
-    </td>
+  <h1><%= @user.name %>のフォロワー一覧</h1>
+  
+  <table class="table table-hover table-inverse">
+    <thead>
+      <th></th>
+      <th>ユーザー名</th>
+      <th>個人コード</th>
+      <th>紹介文</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <div>
+          <%= attachment_image_tag user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+        </div>
+      </td>
+      <td>
+        <%= link_to user_path(user.id) do %>
+          <%= user.name %>
+        <% end %>
+      </td>
+      <td>
+        <%= user.personal_id %>
+      </td>
+      <td>
+        <%= user.introduction %>
+      </td>
+      <td>
+        <%= link_to '登録ジャンル', favorite_genres_user_path(user.id) %>
+      </td>
+      <td>
+        <%= link_to '登録部屋', favorite_rooms_user_path(user.id) %>
+      </td>
       <td>
         <%= render 'relationships/follow_button', user: user %>
       </td>
-  </tr>
-<% end %>
-</table>
+    </tr>
+  <% end %>
+  </table>
+
+</div>

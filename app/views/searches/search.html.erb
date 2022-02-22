@@ -1,59 +1,63 @@
+<div class="container">
+
 <h1><%= params[:key_word] %>の検索結果</h1>
 
-<% if @range == 'Genre' %>
-  <table>
-    <thead>
-      <th>ジャンル名</th>
-      <th>更新日</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @genres.each do |genre| %>
-        <tr>
-          <td>
-            <%= link_to genre_path(genre.id) do %>
-              <%= genre.name %>
-            <% end %>
-          </td>
-          <td>
-            <%= genre.updated_at.to_s(:datetime_jp) %>
-          </td>
-          <td>
-            <%= link_to '参加者一覧', members_genre_path(genre.id) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <table>
-    <thead>
-      <th>部屋名</th>
-      <th>ジャンル名</th>
-      <th>更新日</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @rooms.each do |room| %>
-        <tr>
-          <td>
-            <%= link_to room_path(room.id) do %>
-              <%= room.name %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to genre_path(room.genre.id) do %>
-              <%= room.genre.name %>
-            <% end %>
-          </td>
-          <td>
-            <%= room.updated_at.to_s(:datetime_jp)
-          </td>
-          <td>
-            <%= link_to '参加者一覧', members_room_path(room.id) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+  <% if @range == 'Genre' %>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <th>ジャンル名</th>
+        <th>更新日</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre_path(genre.id) do %>
+                <%= genre.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= genre.updated_at.to_s(:datetime_jp) %>
+            </td>
+            <td>
+              <%= link_to '参加者一覧', members_genre_path(genre.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <th>部屋名</th>
+        <th>ジャンル名</th>
+        <th>更新日</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td>
+              <%= link_to room_path(room.id) do %>
+                <%= room.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to genre_path(room.genre.id) do %>
+                <%= room.genre.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= room.updated_at.to_s(:datetime_jp)
+            </td>
+            <td>
+              <%= link_to '参加者一覧', members_room_path(room.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+</div>
