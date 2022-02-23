@@ -1,39 +1,63 @@
-<div>
-  <p><%= message.words %></p>
+<div class="card w-200 mx-auto mt-4 shadow-lg">
 
-  <div>
+  <p class="card-text p-4">
+    <%= message.words %>
+  </p>
+
+  <div class="d-block mx-auto">
     <%= attachment_image_tag message, :post_image, :fill, 300, 300 %>
   </div>
 
-  <div>
-    <%= link_to genre_path(message.room.genre.id) do %>
-      <%= message.room.genre.name %>
-    <% end %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+        <div>
+          <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+        </div>
+        <div>
+          <%= link_to user_path(message.user.id) do %>
+            <%= message.user.name %>
+          <% end %>
+          @<%= message.user.personal_id %>
+        </div>
+      </div>
+      <div class="col-8">
+        <div>
+          <%= link_to genre_path(message.room.genre.id) do %>
+            <%= message.room.genre.name %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to room_path(message.room.id) do %>
+            <%= message.room.name %>
+          <% end %>
+        </div>
+        <div>
+          <%= message.created_at.to_s(:datetime_jp) %>
+        </div>
+        <div>
+          コメント数：<%= message.comments.count %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2 ml-1">
+
+      <div id="favorite_button_<%= message.id %>">
+        <%= render 'favorite_messages/favorite', message: message %>
+      </div>
+      
+    </div>
+    
+    <div class="row mt-2 ml-1">
+    
+      <div>
+        <%= link_to '返信', room_message_path(message.room.id, message.id), class: "btn btn-success" %>
+      </div>
+      
+    </div>
+    
   </div>
 
-  <div>
-    <%= link_to room_path(message.room.id) do %>
-      <%= message.room.name %>
-    <% end %>
-  </div>
 </div>
 
-<div>
-  <%= message.created_at.to_s(:datetime_jp) %>
-</div>
-
-<div>
-  <div>
-    <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
-  </div>
-  <div>
-    <%= link_to user_path(message.user.id) do %>
-      <%= message.user.name %>
-    <% end %>
-    <%= message.user.personal_id %>
-  </div>
-</div>
-
-<div id="favorite_button_<%= message.id %>">
-  <%= render 'favorite_messages/favorite', message: message %>
-</div>

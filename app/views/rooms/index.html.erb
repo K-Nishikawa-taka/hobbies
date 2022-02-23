@@ -1,38 +1,46 @@
-<h1>部屋一覧</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <th>部屋名</th>
-    <th>ジャンル</th>
-    <th>更新日</th>
-    <th></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td>
-          <%= link_to room_path(room.id) do %>
-            <%= room.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to genre_path(room.genre.id) do %>
-            <%= room.genre.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= room.updated_at.to_s(:datetime_jp) %>
-        </td>
-        <td>
-          <%= link_to '参加者一覧', members_room_path(room.id) %>
-        </td>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to '削除', room_path(room.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h1>部屋一覧　(<%= @rooms.count %>)件</h1>
+
+  <table class="table table-hover table-inverse">
+    <thead>
+      <th>部屋名</th>
+      <th>ジャンル</th>
+      <th>投稿数</th>
+      <th>更新日</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td>
+            <%= link_to room_path(room.id) do %>
+              <%= room.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to genre_path(room.genre.id) do %>
+              <%= room.genre.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= room.messages.count %>
+          </td>
+          <td>
+            <%= room.updated_at.to_s(:datetime_jp) %>
+          </td>
+          <td>
+            <%= link_to '参加者一覧', members_room_path(room.id) %>
+          </td>
+          <td>
+            <% if current_user.admin? %>
+              <%= link_to '削除', room_path(room.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

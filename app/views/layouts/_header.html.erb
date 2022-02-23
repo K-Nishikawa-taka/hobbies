@@ -1,37 +1,48 @@
-<nav class="navvar navbar-expand-lg navbar-light">
-  <div class="container ">
-    <a class="navbar-brand p-3" href="/">趣味の間</a>
-    
-    <% if user_signed_in? %>
+<div class="container">
+  <div class="row justify-content-between">
 
-      <% if current_user.admin? %>
-        <p class="text-center">管理者モード</p>
+    <div>
+      <%= link_to root_path, class: 'navbar-brand p-3' do %>
+        <h1>趣味の間</h1>
       <% end %>
-
-    <div class="mx-auto">
-      <%= render 'searches/search_form' %>
     </div>
 
-      <ul class="navbar-nav ml-auto, float-right">
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
-        <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>
-        <li><%= link_to '部屋一覧', rooms_path, class: 'm-3 p-2 border border-5' %></li>
-        <% if current_user.admin? %>
-          <li><%= link_to 'ユーザー一覧', users_path, class: 'm-3 p-2 border border-5' %></li>
-        <% else %>
-          <li>
-            <%= link_to user_path(current_user.id), class: 'm-3 p-2 border border-5' do %>
-              <%= current_user.name %>
+    <div>
+      <% if user_signed_in? %>
+
+        <nav class="navvar navbar-expand-lg navbar-light p-3">
+          <ul class="navbar-nav d-flex justify-content-around">
+            <% if current_user.admin? %>
+              <p class="text-center">管理者モード</p>
             <% end %>
-          </li>
-        <% end %>
-      </ul>
-    
-    <% else %>
-      <ul class="navbar-nav ml-auto, float-right">
-        <li><%= link_to '新規登録', new_user_registration_path, class: 'm-3 p-2 border border-5'  %></li>
-        <li><%= link_to 'ログイン', new_user_session_path, class: 'm-3 p-2 border border-5'  %></li>
-    <% end %>
-    
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
+            <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>
+            <li><%= link_to '部屋一覧', rooms_path, class: 'm-3 p-2 border border-5' %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to 'ユーザー一覧', users_path, class: 'm-3 p-2 border border-5' %></li>
+            <% else %>
+              <li>
+                <%= link_to user_path(current_user.id), class: 'm-3 p-2 border border-5' do %>
+                  <%= current_user.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+
+      <% else %>
+        <nav class="navvar navbar-expand-lg navbar-light p-3">
+          <ul class="navbar-nav d-flex justify-content-around">
+            <li><%= link_to '新規登録', new_user_registration_path, class: 'm-3 p-2 border border-5'  %></li>
+            <li><%= link_to 'ログイン', new_user_session_path, class: 'm-3 p-2 border border-5'  %></li>
+          </ul>
+        </nav>
+      <% end %>
+      <div>
+        <%= render 'searches/search_form' %>
+      </div>
+    </div>
+
   </div>
-</nav>
+
+</div>
