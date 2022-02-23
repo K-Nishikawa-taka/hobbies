@@ -2,7 +2,7 @@
   
   <div class="row mt-2">
     
-    <h1><%= @room.name %>の投稿一覧　(<%= @room.messages.count %>)件</h1>
+    <h1><%= @room.name %>の投稿一覧　(<%= @messages.count %>)件</h1>
     
   </div>
   
@@ -26,7 +26,7 @@
     
     <div class="col-6 offset-md-1">
     
-      <% @room.messages.each do |message| %>
+      <% @messages.each do |message| %>
         <%= render 'messages/message', message: message %>
       <% end %>
       

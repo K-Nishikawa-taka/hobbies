@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
+  
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(updated_at: :desc)
   end
 
   def create
@@ -17,6 +18,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @message = Message.new
+    @messages = @room.messages.all.order(created_at: :desc)
   end
 
   def members

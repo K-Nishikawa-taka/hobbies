@@ -92,10 +92,10 @@
 
     <div class="col-6 offset-md-1 py-5">
       
-      <h2><%= @user.messages.count %>件の投稿</h2>
+      <h2><%= @messages.count %>件の投稿</h2>
 
       <div class="card-list-container">
-        <% @user.messages.each do |message| %>
+        <% @messages.each do |message| %>
           <%= render 'messages/message', message: message %>
         <% end %>
       </div>

@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
   def read
     comment = Comment.find(params[:id])
     comment.is_read = true
+    comment.save
     redirect_to room_message_path(comment.message.room.id, comment.message.id)
   end
 

@@ -1,6 +1,6 @@
 class GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Genre.all.order(updated_at: :desc)
     @genre = Genre.new
   end
 
@@ -15,7 +15,7 @@ class GenresController < ApplicationController
   end
 
   def show
-    @genre = Genre.find(params[:id])
+    @genre = Genre.find(params[:id]).order(updated_at: :desc)
     @room = Room.new
   end
 
