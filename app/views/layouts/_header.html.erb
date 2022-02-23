@@ -2,18 +2,19 @@
   <div class="row justify-content-between">
 
     <div>
-      <%= link_to '趣味の間', root_path, class: 'navbar-brand p-3' %>
+      <%= link_to root_path, class: 'navbar-brand p-3' do %>
+        <h1>趣味の間</h1>
+      <% end %>
     </div>
 
     <div>
       <% if user_signed_in? %>
 
-        <% if current_user.admin? %>
-          <p class="text-center">管理者モード</p>
-        <% end %>
-
         <nav class="navvar navbar-expand-lg navbar-light p-3">
           <ul class="navbar-nav d-flex justify-content-around">
+            <% if current_user.admin? %>
+              <p class="text-center">管理者モード</p>
+            <% end %>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
             <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>
             <li><%= link_to '部屋一覧', rooms_path, class: 'm-3 p-2 border border-5' %></li>

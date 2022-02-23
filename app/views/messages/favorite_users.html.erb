@@ -1,45 +1,60 @@
-<h1>お気に入りしたユーザー</h1>
+<div class="container">
+  
+  <div class="row mt-2">
 
-<table>
-  <thead>
-    <th></th>
-    <th>ユーザー名</th>
-    <th>個人コード</th>
-    <th>紹介文<th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @favorite_messages.each do |favorite_message| %>
-      <tr>
-        <td>
-          <div>
-            <%= attachment_image_tag favorite_message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
-          </div>
-        </td>
-        <td>
-          <%= link_to user_path(favorite_message.user.id) do %>
-            <%= favorite_message.user.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= favorite_message.user.personal_id %>
-        </td>
-        <td>
-          <%= link_to 'お気に入りジャンル', favorite_genres_user_path(favorite_message.user.id) %>
-        </td>
-        <td>
-          <%= link_to 'お気に入り部屋', favorite_rooms_user_path(favorite_message.user.id) %>
-        </td>
-        <td>
-          <%= render 'relationships/follow_button', user: favorite_message.user %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div>
-  <%= link_to '投稿に戻る', room_message_path(@message.room.id, @message.id) %>
+    <h1>お気に入りしたユーザー</h1>
+    
+  </div>
+  
+  <div class="row mt-2">
+  
+    <table class="table table-hover table-inverse">
+      <thead>
+        <th></th>
+        <th>ユーザー名</th>
+        <th>個人コード</th>
+        <th>紹介文<th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @favorite_messages.each do |favorite_message| %>
+          <tr>
+            <td>
+              <div>
+                <%= attachment_image_tag favorite_message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+              </div>
+            </td>
+            <td>
+              <%= link_to user_path(favorite_message.user.id) do %>
+                <%= favorite_message.user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= favorite_message.user.personal_id %>
+            </td>
+            <td>
+              <%= favorite_message.user.introduction %>
+            </td>
+            <td>
+              <%= link_to 'お気に入りジャンル', favorite_genres_user_path(favorite_message.user.id) %>
+            </td>
+            <td>
+              <%= link_to 'お気に入り部屋', favorite_rooms_user_path(favorite_message.user.id) %>
+            </td>
+            <td>
+              <%= render 'relationships/follow_button', user: favorite_message.user %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+    
+  <div class="mt-1">
+    <%= link_to '投稿に戻る', room_message_path(@message.room.id, @message.id), class: "btn btn-secondary" %>
+  </div>
+  
 </div>

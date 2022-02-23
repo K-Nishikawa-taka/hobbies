@@ -4,7 +4,7 @@
 
     <div class="col-4">
 
-      <h1 class="pt-3">
+      <h1 class="py-3">
         <%= @user.name %>
       </h1>
 
@@ -26,7 +26,7 @@
             <td><%= @user.introduction %></td>
           </tr>
           <tr>
-            <td>お気に入りジャンル一覧</td>
+            <td>お気に入りジャンル</td>
             <td class="text-center">
               <%= link_to favorite_genres_user_path(@user.id) do %>
                 <%= @user.favorite_genres.count %>
@@ -34,7 +34,7 @@
             </td>
           </tr>
           <tr>
-            <td>お気に入り部屋一覧</td>
+            <td>お気に入り部屋</td>
             <td class="text-center">
               <%= link_to favorite_rooms_user_path(@user.id) do %>
                 <%= @user.favorite_rooms.count %>
@@ -42,10 +42,10 @@
             </td>
           </tr>
           <tr>
-            <td>お気に入り部屋一覧</td>
+            <td>お気に入り投稿</td>
             <td class="text-center">
               <%= link_to favorite_messages_user_path(@user.id) do %>
-                <%= @user.favorite_rooms.count %>
+                <%= @user.favorite_messages.count %>
               <% end %>
             </td>
           </tr>
@@ -73,7 +73,7 @@
                   <%= f.label :登録中 %>
                   <%= f.radio_button :is_deleted, :true %>
                   <%= f.label :退会 %>
-                  <%= f.submit '変更' %>
+                  <%= f.submit '変更', "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
                 </td>
               </t>
             <% end %>
@@ -90,9 +90,11 @@
 
     </div>
 
-    <div class="col-6 offset-md-1">
+    <div class="col-6 offset-md-1 py-5">
+      
+      <h2><%= @user.messages.count %>件の投稿</h2>
 
-      <div class="card-list-container py-5">
+      <div class="card-list-container">
         <% @user.messages.each do |message| %>
           <%= render 'messages/message', message: message %>
         <% end %>

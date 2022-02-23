@@ -2,19 +2,7 @@
   
   <div class="row mt-2">
     
-    <h1><%= @room.name %>の投稿一覧</h1>
-    
-  </div>
-  
-  <div class="row mt-2">
-    
-    <div class="p-2 my-auto">
-      <%= link_to '参加者一覧', members_room_path(@room.id) %>
-    </div>
-    
-    <div class="p-2 my-auto">  
-      <%= render 'favorite_rooms/favorite', room: @room %>
-    </div>
+    <h1><%= @room.name %>の投稿一覧　(<%= @room.messages.count %>)件</h1>
     
   </div>
   
@@ -25,6 +13,14 @@
       <%= render 'messages/error', message: @message %>
       
       <%= render 'messages/new', message: @message, room: @room %>
+      
+      <div class="mt-3">
+        <%= link_to '参加者一覧', members_room_path(@room.id), class: "btn btn-warning" %>
+      </div>
+    
+      <div class="mt-3">  
+        <%= render 'favorite_rooms/favorite', room: @room %>
+      </div>
       
     </div>
     
