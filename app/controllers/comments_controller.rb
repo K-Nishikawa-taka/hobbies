@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def create
     @room = Room.find(params[:room_id])
     @message = Message.find(params[:message_id])
@@ -30,5 +29,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:words, :post_image)
   end
-
 end

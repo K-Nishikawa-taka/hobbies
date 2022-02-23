@@ -18,13 +18,13 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @message = Message.new
   end
-  
+
   def members
     @room = Room.find(params[:id])
     @favorite_rooms = FavoriteRoom.where(room_id: @room.id).all
   end
-  
-  #管理者のみが使用可能
+
+  # 管理者のみが使用可能
   def destroy
     if current_user.admin?
       room = Room.find(params[:id])
@@ -38,5 +38,4 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:name)
   end
-
 end
