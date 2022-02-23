@@ -1,47 +1,64 @@
-<h1>ユーザー情報編集</h1>
+<div class="container">
+  
+  <div class="row my-2">
 
-<%= render 'error', user: @user %>
-
-<div>
-  <%= form_with model: @user, local: true do |f| %>
-
-  <div>
-    <%= f.label :名前 %>
-    <%= f.text_field :name %>
+    <h1>ユーザー情報編集</h1>
+  
   </div>
-
-  <div>
-    <%= f.label :個人コード %>
-    @<%= f.text_field :personal_id %>
-  </div>
-
-  <div>
-    <%= f.label :自己紹介 %>
-    <%= f.text_area :introduction %>
-  </div>
-
-  <div>
-    <%= f.label :アイコン %>
-    <%= f.attachment_field :icon_image %>
-  </div>
-
-  <div>
-    <%= f.submit '保存' %>
-  </div>
-
-  <% end %>
-
-</div>
-
-<div>
-  <%= link_to '戻る', user_path(@user.id) %>
-</div>
-
-<% if current_user.admin %>
-<% else %>
-  <% if @user == current_user %>
+  
+  <div class="row">
+    
     <div>
-      <%= link_to '退会', user_confirm_path(current_user.id) %>
+      <%= render 'error', user: @user %>
     </div>
-  <% end %>
-<% end %>
+  
+    <div class="m-2">
+      <%= form_with model: @user, local: true do |f| %>
+    
+        <div class="mt-2">
+          <%= f.label :名前 %>
+          <%= f.text_field :name %>
+        </div>
+    
+        <div class="mt-2">
+          <%= f.label :個人コード %>
+          @<%= f.text_field :personal_id %>
+        </div>
+    
+        <div class="mt-2">
+          <%= f.label :自己紹介 %>
+          <%= f.text_area :introduction %>
+        </div>
+    
+        <div class="mt-2">
+          <%= f.label :アイコン %>
+          <%= f.attachment_field :icon_image %>
+        </div>
+    
+        <div class="mt-2">
+          <%= f.submit '保存', class: "btn btn-success" %>
+        </div>
+    
+      <% end %>
+      
+    </div>
+    
+  </div>
+
+  <div class="row mt-2">
+    
+    <div class="col-2 m-2">
+      <%= link_to '戻る', user_path(@user.id), class: "btn btn-secondary" %>
+    </div>
+    
+    <% if current_user.admin %>
+    <% elsif @user == current_user %>
+      <div class="col-2 m-2">
+        <%= link_to '退会', user_confirm_path(current_user.id), class: "btn btn-danger" %>
+      </div>
+    <% else %>
+    <% end %>
+
+  </div>
+
+</div>

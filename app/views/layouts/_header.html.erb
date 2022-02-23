@@ -1,38 +1,48 @@
-<h1>
-  <%= link_to '趣味の間', root_path %>
-</h1>
+<div class="container">
+  <div class="row justify-content-between">
 
-<% if user_signed_in? %>
-
-  <% if current_user.admin? %>
-    <p>管理者モード</p>
-  <% end %>
-
-  <%= render 'searches/search_form' %>
-
-  <ul>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-  </ul>
-  <ul>
-    <%= link_to 'ジャンル一覧', genres_path %>
-  </ul>
-  <ul>
-    <%= link_to '部屋一覧', rooms_path %>
-  </ul>
-  <ul>
-    <% if current_user.admin? %>
-      <%= link_to 'ユーザー一覧', users_path %>
-    <% else %>
-      <%= link_to user_path(current_user.id) do %>
-        <%= current_user.name %>
+    <div>
+      <%= link_to root_path, class: 'navbar-brand p-3' do %>
+        <h1>趣味の間</h1>
       <% end %>
-    <% end %>
-  </ul>
-<% else %>
-  <ul>
-    <%= link_to '新規登録', new_user_registration_path %>
-  </ul>
-  <ul>
-    <%= link_to 'ログイン', new_user_session_path %>
-  </li>
-<% end %>
+    </div>
+
+    <div>
+      <% if user_signed_in? %>
+
+        <nav class="navvar navbar-expand-lg navbar-light p-3">
+          <ul class="navbar-nav d-flex justify-content-around">
+            <% if current_user.admin? %>
+              <p class="text-center">管理者モード</p>
+            <% end %>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
+            <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>
+            <li><%= link_to '部屋一覧', rooms_path, class: 'm-3 p-2 border border-5' %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to 'ユーザー一覧', users_path, class: 'm-3 p-2 border border-5' %></li>
+            <% else %>
+              <li>
+                <%= link_to user_path(current_user.id), class: 'm-3 p-2 border border-5' do %>
+                  <%= current_user.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+
+      <% else %>
+        <nav class="navvar navbar-expand-lg navbar-light p-3">
+          <ul class="navbar-nav d-flex justify-content-around">
+            <li><%= link_to '新規登録', new_user_registration_path, class: 'm-3 p-2 border border-5'  %></li>
+            <li><%= link_to 'ログイン', new_user_session_path, class: 'm-3 p-2 border border-5'  %></li>
+          </ul>
+        </nav>
+      <% end %>
+      <div>
+        <%= render 'searches/search_form' %>
+      </div>
+    </div>
+
+  </div>
+
+</div>

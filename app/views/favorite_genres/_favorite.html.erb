@@ -1,10 +1,12 @@
+<div class="mt-3">
 <% if current_user.admin? %>
 <% else %>
   <% if genre.favorited_by?(current_user) %>
-    <%= link_to 'お気に入り解除', genre_favorite_genres_path(genre.id), method: :delete %>
+    <%= link_to 'お気に入り解除', genre_favorite_genres_path(genre.id), method: :delete, class: "btn btn-primary" %>
   <% else %>
-    <%= link_to 'お気に入り', genre_favorite_genres_path(genre.id), method: :post %>
+    <%= link_to 'お気に入り', genre_favorite_genres_path(genre.id), method: :post, class: "btn btn-primary" %>
   <% end %>
 <% end %>
 
-<%= link_to 'お気に入りユーザー一覧', members_genre_path(genre.id) %>
+  <%= link_to 'お気に入りユーザー一覧', members_genre_path(genre.id), class: "btn btn-success" %>
+</div>

@@ -3,7 +3,7 @@
     <%= form_with url: search_path, local: true, method: :get do |f| %>
       <%= f.text_field :key_word %>
       <%= f.select :range, options_for_select([['ジャンル', 'Genre'], ['部屋', 'Room']]) %>
-      <%= f.submit '検索' %>
+      <%= f.submit '検索', class: "btn btn-primary" %>
     <% end %>
   </div>
 <% end %>

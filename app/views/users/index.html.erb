@@ -1,48 +1,52 @@
-<% if current_user.admin? %>
-  <h1>ユーザー一覧</h1>
-  <table>
-    <thead>
-      <th></th>
-      <th>ユーザー名</th>
-      <th>個人コード</th>
-      <th>紹介文</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td>
-            <div>
-              <%= attachment_image_tag user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
-            </div>
-          </td>
-          <td>
-            <%= link_to user_path(user.id) do %>
-              <%= user.name %>
+<div class="container">
+
+  <% if current_user.admin? %>
+    <h1>ユーザー一覧</h1>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <th></th>
+        <th>ユーザー名</th>
+        <th>個人コード</th>
+        <th>紹介文</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <div>
+                <%= attachment_image_tag user, :icon_image, :fill, 60, 60, format: 'jpeg', fallback: 'no_image.jpg' %>
+              </div>
+            </td>
+            <td>
+              <%= link_to user_path(user.id) do %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.personal_id %>
+            </td>
+            <td>
+              <%= user.introduction %>
+            </td>
+            <td>
+              <%= link_to 'お気に入りジャンル一覧', favorite_genres_user_path(user.id) %>
+            </td>
+            <td>
+              <%= link_to 'お気に入り部屋一覧', favorite_rooms_user_path(user.id) %>
+            </td>
+            <% if user.is_deleted == false %>
+              <td>登録中</td>
+            <% else %>
+              <td>退会</td>
             <% end %>
-          </td>
-          <td>
-            <%= user.personal_id %>
-          </td>
-          <td>
-            <%= user.introduction %>
-          </td>
-          <td>
-            <%= link_to 'お気に入りジャンル一覧', favorite_genres_user_path(user.id) %>
-          </td>
-          <td>
-            <%= link_to 'お気に入り部屋一覧', favorite_rooms_user_path(user.id) %>
-          </td>
-          <% if user.is_deleted == false %>
-            <td>登録中</td>
-          <% else %>
-            <td>退会</td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+</div>

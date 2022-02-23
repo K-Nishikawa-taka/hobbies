@@ -1,12 +1,32 @@
-<h1>本当に退会しますか？</h1>
+<div class="container">
+  
+  <div class="row mt-2">
 
-<div>
-  <%= link_to '退会しない', edit_user_path(current_user.id) %>
-</div>
+    <div class="col-12">
+      
+      <div class="text-center">
 
-<% if current_user.admin? %>
-<% else %>
-  <div>
-    <%= link_to '退会する', user_withdraw_path(current_user.id), method: :patch %>
+        <h1>本当に退会しますか？</h1>
+        
+      </div>
+    
+    </div>
+    
   </div>
-<% end %>
+  
+  <div class="row mx-auto my-auto">
+  
+    <div class="my-auto">
+      <%= link_to '退会しない', edit_user_path(current_user.id), class: "btn btn-success" %>
+    </div>
+    
+    <% if current_user.admin? %>
+    <% else %>
+      <div class="my-auto">
+        <%= link_to '退会する', user_withdraw_path(current_user.id), method: :patch, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  
+  </div>
+
+</div>

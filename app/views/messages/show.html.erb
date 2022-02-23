@@ -1,46 +1,29 @@
-<%= render 'comments/error', comment: @comment %>
+<div class="container">
 
-<%= render 'comments/new', message: @message, comment: @comment %>
+  <div class="row">
 
-<%= render 'messages/message', message: @message %>
+    <div class="col-4 mt-4">
 
-<% if @message.user == current_user %>
-  <%= link_to '削除', room_message_path(@message.room.id, @message.id), method: :delete %>
-<% end %>
+      <%= render 'comments/error', comment: @comment %>
 
-<% if current_user.admin? %>
-  <%= link_to '削除', room_message_path(@message.room.id, @message.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+      <%= render 'comments/new', message: @message, comment: @comment %>
 
-<% @message.comments.each do |comment| %>
-  <div>
-    <p><%= comment.words %></p>
-    <div>
-      <%= attachment_image_tag comment, :post_image, :fill, 200, 200 %>
     </div>
+
+    <div class="col-6 offset-md-1 py-5">
+
+      <h2>
+        返信：<%= @message.comments.count %>
+      </h2>
+
+      <%= render 'messages/message', message: @message %>
+
+      <% @message.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+      <% end %>
+
+    </div>
+
   </div>
-  <div>
-    <div>
-      <%= attachment_image_tag comment.user, :icon_image, :fill, 60, 60 %>
-    </div>
-    <div>
-      <p>
-        <%= link_to user_path(comment.user.id) do %>
-          <%= comment.user.name %>
-        <% end %>
-      </p>
-      <p>
-        <%= comment.user.personal_id %>
-      </p>
-    </div>
-    
-    <% if comment.user == current_user %>
-      <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete %>
-    <% end %>
-    
-    <% if current_user.admin? %>
-      <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
-    
-  </div>
-<% end %>
+
+</div>

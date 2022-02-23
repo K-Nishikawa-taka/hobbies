@@ -1,34 +1,58 @@
-<h1><%= @genre.name %>の部屋一覧</h1>
+<div class="container">
 
-<%= render 'rooms/error', room: @room %>
+  <div class="row p-2">
 
-<div>
-  <%= link_to '参加者一覧', members_genre_path(@genre.id) %>
+    <h1><%= @genre.name %>の部屋一覧　(<%= @genre.rooms.count %>)件</h1>
+
+  </div>
+
+   <div class="row p-2">
+
+    <div class="col-4">
+      
+      <%= render 'rooms/error', room: @room %>
+
+      <%= render 'rooms/new', room: @room,  genre: @genre %>
+
+      <div class="mx-auto mt-3">
+        <%= link_to '参加者一覧', members_genre_path(@genre.id), class: "btn btn-warning" %>
+      </div>
+
+      <div>
+        <%= render 'favorite_genres/favorite', genre: @genre %>
+      </div>
+
+    </div>
+
+    <div class="col-6 offset-md-1">
+
+      <table class="table table-hover table-inverse">
+        <thead>
+          <th>部屋名</th>
+          <th>更新日</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @genre.rooms.each do |room| %>
+            <tr>
+              <td>
+                <%= link_to room_path(room.id) do %>
+                  <%= room.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= room.updated_at.to_s(:datetime_jp) %>
+              </td>
+              <td>
+                <% if current_user.admin? %>
+                  <%= link_to '削除', room_path(room.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
 </div>
-
-<%= render 'favorite_genres/favorite', genre: @genre %>
-
-<%= render 'rooms/new', room: @room,  genre: @genre %>
-
-<table>
-  <thead>
-    <th>部屋名</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @genre.rooms.each do |room| %>
-      <tr>
-        <td>
-          <%= link_to room_path(room.id) do %>
-            <%= room.name %>
-          <% end %>
-        </td>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to '削除', room_path(room.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-          <% end %>
-        </td>
-      </tr>
-     <% end %> 
-  </tbody>
-</table>
