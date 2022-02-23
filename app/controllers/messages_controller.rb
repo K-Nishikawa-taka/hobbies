@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   def create
     @room = Room.find(params[:room_id])
     @message = Message.new(message_params)
@@ -33,5 +32,4 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:words, :post_image)
   end
-
 end

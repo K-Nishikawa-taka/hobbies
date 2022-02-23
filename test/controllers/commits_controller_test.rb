@@ -5,5 +5,4 @@ class CommitsControllerTest < ActionDispatch::IntegrationTest
     get commits_show_url
     assert_response :success
   end
-
 end

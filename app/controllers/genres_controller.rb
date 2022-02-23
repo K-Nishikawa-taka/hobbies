@@ -1,6 +1,6 @@
 class GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Genre.all.order(updated_at: :desc)
     @genre = Genre.new
   end
 
@@ -15,7 +15,7 @@ class GenresController < ApplicationController
   end
 
   def show
-    @genre = Genre.find(params[:id])
+    @genre = Genre.find(params[:id]).order(updated_at: :desc)
     @room = Room.new
   end
 
@@ -23,8 +23,8 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).all
   end
-  
-  #管理者のみが使用可能
+
+  # 管理者のみが使用可能
   def destroy
     if current_user.admin?
       genre = Genre.find(params[:id])
@@ -38,5 +38,4 @@ class GenresController < ApplicationController
   def genre_params
     params.require(:genre).permit(:name)
   end
-
 end

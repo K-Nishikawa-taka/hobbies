@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def create
     @room = Room.find(params[:room_id])
     @message = Message.find(params[:message_id])
@@ -22,6 +21,7 @@ class CommentsController < ApplicationController
   def read
     comment = Comment.find(params[:id])
     comment.is_read = true
+    comment.save
     redirect_to room_message_path(comment.message.room.id, comment.message.id)
   end
 
@@ -30,5 +30,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:words, :post_image)
   end
-
 end
