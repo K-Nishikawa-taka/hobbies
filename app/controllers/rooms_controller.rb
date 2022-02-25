@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to genre_path(@genre.id)
     else
+      @rooms = Room.all.order(updated_at: :desc)
       render 'genres/show'
     end
   end

@@ -5,7 +5,9 @@
   <table class="table table-hover table-inverse">
     <thead>
       <th>部屋名</th>
-      <th></th>
+      <th>ジャンル名</th>
+      <th>投稿数</th>
+      <th>更新日</th>
       <th></th>
     </thead>
     <tbody>
@@ -21,6 +23,13 @@
               <%= favorite_room.room.genre.name %>
             <% end %>
           </td>
+          <td>
+            <%= favorite_room.room.messages.count %>
+          </td>
+          <td>
+            <%= favorite_room.room.updated_at.to_s(:datetime_jp) %>
+          </td>
+          <td>
           <td>
             <%= render 'favorite_rooms/favorite', room: favorite_room.room %>
           </td>

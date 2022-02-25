@@ -1,10 +1,11 @@
 <div class="container">
 
   <h1><%= @user.name %>のお気に入りジャンル一覧</h1>
-  
+
   <table class="table table-hover table-inverse">
     <thead>
       <th>ジャンル名</th>
+      <th>更新日</th>
       <th></th>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
             <%= link_to genre_path(favorite_genre.genre.id) do %>
               <%= favorite_genre.genre.name %>
             <% end %>
+          </td>
+          <td>
+            <%= favorite_genre.genre.updated_at.to_s(:datetime_jp) %>
           </td>
           <td>
             <%= render 'favorite_genres/favorite', genre: favorite_genre.genre %>

@@ -9,75 +9,77 @@
       </h1>
 
       <div>
-        <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+        <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg' %>
       </div>
 
       <table class="table">
-          <tr>
-            <td>ユーザー名</td>
-            <td><%= @user.name %></td>
-          </tr>
-          <tr>
-            <td>個人コード</td>
-            <td>@<%= @user.personal_id %></td>
-          </tr>
-          <tr>
-            <td>紹介文</td>
-            <td><%= @user.introduction %></td>
-          </tr>
-          <tr>
-            <td>お気に入りジャンル</td>
-            <td class="text-center">
-              <%= link_to favorite_genres_user_path(@user.id) do %>
-                <%= @user.favorite_genres.count %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>お気に入り部屋</td>
-            <td class="text-center">
-              <%= link_to favorite_rooms_user_path(@user.id) do %>
-                <%= @user.favorite_rooms.count %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>お気に入り投稿</td>
-            <td class="text-center">
-              <%= link_to favorite_messages_user_path(@user.id) do %>
-                <%= @user.favorite_messages.count %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>フォロー一覧</td>
-            <td class="text-center">
-              <%= link_to user_followings_path(@user.id) do %>
-                <%= @user.followings.count %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>フォロワー一覧</td>
-            <td class="text-center">
-              <%= link_to user_followers_path(@user.id) do %>
-                <%= @user.followers.count %>
-              <% end %>
-            </td>
-          </tr>
-          <% if current_user.admin? %>
-             <%= form_with model: @user, method: :patch, local: true do |f| %>
-              <tr>
-                <td>
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>個人コード</td>
+          <td>@<%= @user.personal_id %></td>
+        </tr>
+        <tr>
+          <td>紹介文</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <td>お気に入りジャンル</td>
+          <td class="text-center">
+            <%= link_to favorite_genres_user_path(@user.id) do %>
+              <%= @user.favorite_genres.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>お気に入り部屋</td>
+          <td class="text-center">
+            <%= link_to favorite_rooms_user_path(@user.id) do %>
+              <%= @user.favorite_rooms.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>お気に入り投稿</td>
+          <td class="text-center">
+            <%= link_to favorite_messages_user_path(@user.id) do %>
+              <%= @user.favorite_messages.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>フォロー一覧</td>
+          <td class="text-center">
+            <%= link_to user_followings_path(@user.id) do %>
+              <%= @user.followings.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>フォロワー一覧</td>
+          <td class="text-center">
+            <%= link_to user_followers_path(@user.id) do %>
+              <%= @user.followers.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if current_user.admin? %>
+              <% if @user != current_user %>
+               <%= form_with model: @user, method: :patch, local: true do |f| %>
                   <%= f.radio_button :is_deleted, :false %>
                   <%= f.label :登録中 %>
                   <%= f.radio_button :is_deleted, :true %>
                   <%= f.label :退会 %>
-                  <%= f.submit '変更', "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-                </td>
-              </t>
+                  <%= f.submit '変更', "data-confirm" => "本当に登録内容変更しますか？", class: "btn btn-danger" %>
+               <% end %>
+              <% end %>
             <% end %>
-          <% end %>
+          </td>
+        </tr>
       </table>
 
       <% if @user == current_user %>
@@ -91,7 +93,7 @@
     </div>
 
     <div class="col-6 offset-md-1 py-5">
-      
+
       <h2><%= @messages.count %>件の投稿</h2>
 
       <div class="card-list-container">

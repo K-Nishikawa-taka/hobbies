@@ -5,14 +5,14 @@
   </p>
 
   <div class="d-block mx-auto">
-    <%= attachment_image_tag comment, :post_image, :fill, 200, 200 %>
+    <%= attachment_image_tag comment, :post_image, :fill, 140, 140 %>
   </div>
 
   <div class="card-body">
     <div class="row">
       <div class="col-4">
         <div>
-          <%= attachment_image_tag comment.user, :icon_image, :fill, 60, 60, format: 'jpeg', fallback: 'no_image.jpg' %>
+          <%= attachment_image_tag comment.user, :icon_image, :fill, 50, 50, format: 'jpg', fallback: 'no_image.jpg' %>
         </div>
         <div>
           <p>
@@ -44,11 +44,13 @@
               <% end %>
             <% end %>
 
-            <% if current_user == comment.message.user %>
-              <% if comment.is_read == false %>
-                <%= button_to "既読",room_message_comment_read_path(comment.message.room.id, comment.message.id, comment.id), method: :patch, class: "btn btn-success" %>
-              <% else %>
-                <p>既読</p>
+            <% if comment.user != current_user %>
+              <% if current_user == comment.message.user %>
+                <% if comment.is_read == false %>
+                  <%= button_to "既読",room_message_comment_read_path(comment.message.room.id, comment.message.id, comment.id), method: :patch, class: "btn btn-success" %>
+                <% else %>
+                  <p>既読</p>
+                <% end %>
               <% end %>
             <% end %>
 
@@ -59,13 +61,11 @@
         <div class="row">
 
           <div class="col-6">
-
-            <% if comment.user == current_user %>
-              <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, class: "btn btn-danger" %>
-            <% end %>
-
+            
             <% if current_user.admin? %>
               <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+            <% elsif comment.user == current_user %>
+              <%= link_to '削除', room_message_comment_path(comment.message.room.id, comment.message.id, comment.id), method: :delete, class: "btn btn-danger" %>
             <% end %>
 
           </div>
