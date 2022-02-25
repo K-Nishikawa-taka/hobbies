@@ -11,4 +11,9 @@ class Genre < ApplicationRecord
   def self.looks(key_word)
     @genres = Genre.where('name LIKE ?', "%#{key_word}%")
   end
+  
+  def top_rank_genres
+    
+  end
+  
 end

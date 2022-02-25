@@ -2,7 +2,7 @@
 
   <div class="row p-2">
 
-    <h1><%= @genre.name %>の部屋一覧　(<%= @genre.rooms.count %>)件</h1>
+    <h1><%= @genre.name %>の部屋一覧　(<%= @rooms.count %>)件</h1>
 
   </div>
 
@@ -29,16 +29,20 @@
       <table class="table table-hover table-inverse">
         <thead>
           <th>部屋名</th>
+          <th>投稿数</th>
           <th>更新日</th>
           <th></th>
         </thead>
         <tbody>
-          <% @genre.rooms.each do |room| %>
+          <% @rooms.each do |room| %>
             <tr>
               <td>
                 <%= link_to room_path(room.id) do %>
                   <%= room.name %>
                 <% end %>
+              </td>
+              <td>
+                <%= room.messages.count %>
               </td>
               <td>
                 <%= room.updated_at.to_s(:datetime_jp) %>

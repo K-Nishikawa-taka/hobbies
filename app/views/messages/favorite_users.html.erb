@@ -23,7 +23,7 @@
           <tr>
             <td>
               <div>
-                <%= attachment_image_tag favorite_message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+                <%= attachment_image_tag favorite_message.user, :icon_image, :fill, 80, 80, format: 'jpg', fallback: 'no_image.jpg' %>
               </div>
             </td>
             <td>
@@ -32,7 +32,7 @@
               <% end %>
             </td>
             <td>
-              <%= favorite_message.user.personal_id %>
+              @<%= favorite_message.user.personal_id %>
             </td>
             <td>
               <%= favorite_message.user.introduction %>

@@ -16,7 +16,7 @@
     <tr>
       <td>
         <div>
-          <%= attachment_image_tag user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+          <%= attachment_image_tag user, :icon_image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg' %>
         </div>
       </td>
       <td>
@@ -25,7 +25,7 @@
         <% end %>
       </td>
       <td>
-        <%= user.personal_id %>
+        @<%= user.personal_id %>
       </td>
       <td>
         <%= user.introduction %>

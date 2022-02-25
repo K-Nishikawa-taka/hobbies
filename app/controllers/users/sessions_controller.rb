@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :reject_user, only: [:create]
-
+  
   protected
 
   def reject_user

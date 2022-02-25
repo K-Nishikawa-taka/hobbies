@@ -1,8 +1,12 @@
 <% if user.errors.any? %>
-  <%= user.errors.count %> errors occured
-  <% user.errors.full_messages.each do |full_message| %>
-    <li>
-      <%= full_message %>
-    </li>
-  <% end %>
+  <div>
+    <%= user.errors.count %> errors occured
+  </div>
+  <div>
+    <% user.errors.full_messages.each do |full_message| %>
+      <ul>
+        <%= full_message %>
+      </ul>
+    <% end %>
+  </div>
 <% end %>

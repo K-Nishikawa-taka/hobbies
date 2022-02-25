@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :name, length: { in: 1..15 }
   validates :personal_id, presence: true
   validates :personal_id, length: { in: 1..15 }
+  validates :personal_id, format: { with: /\A[a-z0-9]+\z/ }
   validates :personal_id, uniqueness: true
   validates :introduction, length: { maximum: 150 }
   validates :email, presence: true

@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  belongs_to :genre
+  belongs_to :genre, touch: true
   has_many :messages, dependent: :destroy
   has_many :favorite_rooms, dependent: :destroy
 
@@ -12,4 +12,5 @@ class Room < ApplicationRecord
   def self.looks(key_word)
     @rooms = Room.where('name LIKE ?', "%#{key_word}%")
   end
+  
 end
