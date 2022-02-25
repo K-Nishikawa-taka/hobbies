@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
   }
-
 
   resources :users, only: [:show, :edit, :update, :index] do
     resource :relationships, only: [:create, :destroy]
@@ -16,9 +15,9 @@ Rails.application.routes.draw do
       get :favorite_rooms
       get :favorite_messages
     end
-    #退会確認画面
+    # 退会確認画面
     get 'confirm' => 'users#confirm', as: 'confirm'
-    #論理削除
+    # 論理削除
     patch 'withdraw' => 'users#withdraw', as: 'withdraw'
   end
 
@@ -45,5 +44,4 @@ Rails.application.routes.draw do
   end
 
   get 'search' => 'searches#search', as: 'search'
-
 end

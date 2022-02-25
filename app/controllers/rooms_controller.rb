@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
+  
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(updated_at: :desc)
   end
 
   def create
@@ -10,6 +11,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to genre_path(@genre.id)
     else
+      @rooms = Room.all.order(updated_at: :desc)
       render 'genres/show'
     end
   end
@@ -17,14 +19,15 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @message = Message.new
+    @messages = @room.messages.all.order(created_at: :desc)
   end
-  
+
   def members
     @room = Room.find(params[:id])
     @favorite_rooms = FavoriteRoom.where(room_id: @room.id).all
   end
-  
-  #管理者のみが使用可能
+
+  # 管理者のみが使用可能
   def destroy
     if current_user.admin?
       room = Room.find(params[:id])
@@ -38,5 +41,4 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:name)
   end
-
 end

@@ -1,18 +1,18 @@
-<div class="card w-200 mx-auto mt-4 shadow-lg">
+<div class="card w-100 mx-auto mt-4 shadow-lg">
 
   <p class="card-text p-4">
     <%= message.words %>
   </p>
 
   <div class="d-block mx-auto">
-    <%= attachment_image_tag message, :post_image, :fill, 300, 300 %>
+    <%= attachment_image_tag message, :post_image, :fill, 200, 200 %>
   </div>
 
   <div class="card-body">
     <div class="row">
       <div class="col-4">
         <div>
-          <%= attachment_image_tag message.user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+          <%= attachment_image_tag message.user, :icon_image, :fill, 80, 80, format: 'jpg', fallback: 'no_image.jpg' %>
         </div>
         <div>
           <%= link_to user_path(message.user.id) do %>
@@ -51,8 +51,16 @@
     
     <div class="row mt-2 ml-1">
     
-      <div>
+      <div class="mr-2">
         <%= link_to '返信', room_message_path(message.room.id, message.id), class: "btn btn-success" %>
+      </div>
+      
+      <div>
+        <% if current_user.admin? %>
+          <%= link_to '削除', room_message_path(message.room.id, message.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <% elsif message.user == current_user %>
+          <%= link_to '削除', room_message_path(message.room.id, message.id), method: :delete, class: "btn btn-danger" %>
+        <% end %>
       </div>
       
     </div>

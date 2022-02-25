@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   def create
     @room = Room.find(params[:room_id])
     @message = Message.new(message_params)
@@ -8,6 +7,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to room_path(@room.id)
     else
+      @messages = @room.messages.all.order(created_at: :desc)
       render 'rooms/show'
     end
   end
@@ -33,5 +33,4 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:words, :post_image)
   end
-
 end

@@ -22,7 +22,7 @@
         <% @favorite_genres.each do |favorite_genre| %>
           <tr>
             <td>
-              <%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: 'no_image.jpg' %>
+              <%= attachment_image_tag favorite_genre.user, :icon_image, :fill, 80, 80, format: 'jpg', fallback: 'no_image.jpg' %>
             </td>
             <td>
               <%= link_to user_path(favorite_genre.user.id) do %>
@@ -30,7 +30,7 @@
               <% end %>
             </td>
             <td>
-              <%= favorite_genre.user.personal_id %>
+              @<%= favorite_genre.user.personal_id %>
             </td>
             <td>
               <%= favorite_genre.user.introduction %>
