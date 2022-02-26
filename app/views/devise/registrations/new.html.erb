@@ -1,34 +1,34 @@
 <div class="container">
-  
+
   <div class="row mt-2">
 
     <h2>新規登録</h2>
-    
+
     <div class="">
       <%= flash[:notice] %>
     </div>
-    
+
   </div>
-  
+
   <div class="row m-2">
-    
+
     <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-      
+
       <div class="field">
         <%= f.label :名前 %><br />
         <%= f.text_field :name, autofocus: true %>
       </div>
-    
+
        <div class="field">
         <%= f.label :個人コード %><br />
         @<%= f.text_field :personal_code %>
       </div>
-    
+
       <div class="field">
         <%= f.label :メールアドレス %><br />
         <%= f.email_field :email, autocomplete: "email" %>
       </div>
-    
+
       <div class="field">
         <%= f.label :パスワード %>
         <% if @minimum_password_length %>
@@ -36,27 +36,27 @@
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
-    
+
       <div class="field">
         <%= f.label :パスワード再確認 %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
-    
+
       <div class="mt-2">
         <div class="actions">
           <%= f.submit "サインアップ", class: "btn btn-primary" %>
         </div>
       </div>
-      
+
     <% end %>
-    
+
   </div>
-  
+
   <p class="mt-2">
     既に登録済の方は
     <%= link_to 'こちら', new_user_session_path %>
   </p>
-    
+
   </div>
 
 </div>
