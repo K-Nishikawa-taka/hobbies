@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     # 退会フラグを立てる
     current_user.update(is_deleted: true)
     # 退会者の個人コードを暗号化
-    current_user.update(personal_id: Base64.encode64(current_user.personal_id))
+    current_user.update(personal_code: Base64.encode64(current_user.personal_id))
 
     # ログイン状態を解除
     reset_session
@@ -56,6 +56,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :personal_id, :introduction, :icon_image, :is_deleted)
+    params.require(:user).permit(:name, :personal_code, :introduction, :icon_image, :is_deleted)
   end
 end
