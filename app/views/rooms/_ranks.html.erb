@@ -1,14 +1,15 @@
 <h2>部屋ランキング</h2>
 
-<% room_ranks.each.with_index(1) do |room, i| %>
-  <table class="table">
-    <thead>
-      <th>順位</th>
-      <th>部屋名</th>
-      <th>ジャンル名</th>
-      <th>お気に入り数</th>
-    </thead>
-    <tbody>
+
+<table class="table">
+  <thead>
+    <th>順位</th>
+    <th>部屋名</th>
+    <th>ジャンル名</th>
+    <th>お気に入り数</th>
+  </thead>
+  <tbody>
+    <% room_ranks.each.with_index(1) do |room, i| %>
       <tr>
         <td>
           第<%= i %>位
@@ -27,6 +28,6 @@
           <%= room.favorite_rooms.count %>
         </td>
       </tr>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>

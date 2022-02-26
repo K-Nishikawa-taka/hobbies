@@ -1,13 +1,14 @@
 <h2>ジャンルランキング</h2>
 
-<% genre_ranks.each.with_index(1) do |genre, i| %>
-  <table class="table">
-    <thead>
-      <th>順位</th>
-      <th>ジャンル名</th>
-      <th>お気に入り</th>
-    </thead>
-    <tbody>
+
+<table class="table">
+  <thead>
+    <th>順位</th>
+    <th>ジャンル名</th>
+    <th>お気に入り</th>
+  </thead>
+  <tbody>
+    <% genre_ranks.each.with_index(1) do |genre, i| %>
       <tr>
         <td>
           第<%= i %>位
@@ -21,6 +22,7 @@
           <%= genre.favorite_genres.count %>
         </td>
       </tr>
+    <% end %>
     </tbody>
-  </table>
-<% end %>
+</table>
+

@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(name:  "管理人",
-             personal_id: "Admin",
+             personal_code: "Admin",
              email: "Yugumo16@Kancolle.jp",
              password:  "Yugumo16",
              password_confirmation: "Yugumo16",
