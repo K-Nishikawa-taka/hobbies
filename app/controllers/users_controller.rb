@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def show
     @user = User.find(params[:id])
     @messages = @user.messages.all.order(created_at: :desc)
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     # 退会フラグを立てる
     current_user.update(is_deleted: true)
     # 退会者の個人コードを暗号化
-    current_user.update(personal_code: Base64.encode64(current_user.personal_id))
+    current_user.update(personal_code: Base64.encode64(current_user.personal_code))
 
     # ログイン状態を解除
     reset_session
