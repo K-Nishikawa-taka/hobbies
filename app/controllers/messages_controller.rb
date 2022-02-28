@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
-    redirect_to user_path(current_user)
+    redirect_to request.referer
   end
 
   def favorite_users
