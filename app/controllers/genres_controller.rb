@@ -37,6 +37,6 @@ class GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, favorite_genres_attribute: [:user_id, :genre_id])
   end
 end
