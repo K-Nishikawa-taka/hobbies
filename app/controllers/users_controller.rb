@@ -7,14 +7,23 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render :edit
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to user_path(@user.id)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to user_path(@user.id)
     end
   end
 
@@ -58,4 +67,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :personal_code, :introduction, :icon_image, :is_deleted)
   end
+
 end

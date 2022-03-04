@@ -19,8 +19,12 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = Message.find(params[:id])
-    @message.destroy
-    redirect_to request.referer
+    if @message.user == current_user || current_user.admin == true
+      @message.destroy
+      redirect_to request.referer
+    else
+      redirect_to request.refer
+    end
   end
 
   def favorite_users

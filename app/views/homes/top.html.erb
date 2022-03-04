@@ -15,6 +15,18 @@
     </div>
   </div>
   
+  <div class="row mt-4">
+
+      <div class="offset-4 col-2 text-center">
+        <%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary" %>
+      </div>
+
+      <div class="col-2 text-center">
+        <%= link_to 'ログイン', new_user_session_path, class: "btn btn-success" %>
+      </div>
+
+  </div>
+  
   <div class="row my-4">
     
     <div class="offset-2 col-4 text-center">
@@ -30,18 +42,5 @@
     </div>
     
   </div>
-
-  <div class="row mt-4">
-
-      <div class="offset-4 col-2 text-center">
-        <%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary" %>
-      </div>
-
-      <div class="col-2 text-center">
-        <%= link_to 'ログイン', new_user_session_path, class: "btn btn-success" %>
-      </div>
-
-  </div>
-  
 
 </div>
