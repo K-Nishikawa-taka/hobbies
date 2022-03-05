@@ -14,6 +14,8 @@
           <ul class="navbar-nav d-flex justify-content-around">
             <% if current_user.admin? %>
               <p class="text-center">管理者モード</p>
+            <% else %>
+            
             <% end %>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'm-3 p-2 border border-5' %></li>
             <li><%= link_to 'ジャンル一覧', genres_path, class: 'm-3 p-2 border border-5' %></li>

@@ -17,6 +17,12 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
 
+  #通知用
+  #自分からの通知
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  #相手からの通知
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   validates :name, presence: true
   validates :name, length: { in: 1..15 }
   validates :personal_code, presence: true
