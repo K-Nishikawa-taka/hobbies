@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.message_id = @message.id
     if @comment.save
-      redirect_to room_message_path(@room.id, @message.id)
+     redirect_to room_message_path(@room.id, @message.id)
     else
       render 'messages/show'
     end

@@ -42,6 +42,9 @@ Rails.application.routes.draw do
       patch 'comments/:id/read' => 'comments#read', as: 'comment_read'
     end
   end
+  
+  resources :notifications, only: :index
 
   get 'search' => 'searches#search', as: 'search'
+  
 end

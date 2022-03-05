@@ -11,4 +11,5 @@ class Message < ApplicationRecord
   def favorited_by?(user)
     favorite_messages.where(user_id: user.id).exists?
   end
+  
 end
