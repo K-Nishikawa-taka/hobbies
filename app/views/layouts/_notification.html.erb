@@ -1,0 +1,12 @@
+<% is_break = false %>
+<% current_user.messages.each do |message| %>
+  <% message.comments.each do |comment| %>
+    <% if comment.is_read == false %>
+      <p>未読あり</p>
+      <% is_break = true %>
+      <% break %>
+    <% end %>
+    <% break if is_break == true %>
+  <% end %>
+  <% break if is_break == true %>
+<% end %>
