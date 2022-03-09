@@ -3,6 +3,6 @@ class Comment < ApplicationRecord
   belongs_to :message
   attachment :post_image
 
-  validates :words, presence: true
-  validates :words, length: { in: 1..150 }
+  validates :words, {presence: true, length: {maximum: 150}}
+  
 end

@@ -17,21 +17,10 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
 
-  #通知用
-  #自分からの通知
-  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  #相手からの通知
-  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-
-  validates :name, presence: true
-  validates :name, length: { in: 1..15 }
-  validates :personal_code, presence: true
-  validates :personal_code, length: { in: 1..15 }
-  validates :personal_code, format: { with: /\A[a-z0-9]+\z/ }
-  validates :personal_code, uniqueness: true
+  validates :name, {presence: true, length: { maximum: 15 }}
+  validates :personal_code, {presence: true, format: { with: /\A[a-zA-Z0-9]+\z/ }, length: { maximum: 15 }, uniqueness: true}
   validates :introduction, length: { maximum: 150 }
-  validates :email, presence: true
-  validates :email, uniqueness: true
+  validates :email, {presence: true, uniqueness: true}
 
   def follow(user_id)
     relationships.create(followed_id: user_id)
