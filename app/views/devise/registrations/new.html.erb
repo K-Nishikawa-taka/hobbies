@@ -4,10 +4,10 @@
 
     <h2>新規登録</h2>
 
-    <div class="">
-      <%= flash[:notice] %>
-    </div>
-
+  </div>
+  
+  <div class="alert row mt-2">
+    <%= render "devise/shared/error_messages", resource: resource %>
   </div>
 
   <div class="row m-2">

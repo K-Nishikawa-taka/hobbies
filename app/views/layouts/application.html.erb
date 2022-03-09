@@ -16,13 +16,23 @@
       <%= render 'layouts/header' %>
     </header>
     
-    <main>
+    <main class="p-5">
+      
+      <p class="notice m-1">
+        <%= notice %>
+      </p>
+      
+      <p class="alert m-1">
+        <%= alert %>
+      </p>
+      
       <%= yield %>
+      
     </main>
     
   </body>
   
-  <footer class="fixed-bottom bg-dark text-white shadow-sm">
+  <footer class="fixed-bottom pmt-5 bg-dark text-white shadow-sm">
     <p class="text-center">趣味の間</p>
   </footer>
   
