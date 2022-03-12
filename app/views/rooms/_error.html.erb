@@ -1,8 +1,14 @@
 <% if room.errors.any? %>
-  <%= room.errors.count %> errors occured
-  <% room.errors.full_messages.each do |full_message| %>
-    <li>
-      <%= full_message %>
-    </li>
-  <% end %>
+  <div class="alert">
+    <h4>
+      <%= room.errors.count %> errors occured
+    </h4>
+    <h6>
+      <% room.errors.full_messages.each do |full_message| %>
+        <li>
+          <%= full_message %>
+        </li>
+      <% end %>
+    </h6>
+  </div>
 <% end %>

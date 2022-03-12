@@ -1,8 +1,14 @@
 <% if comment.errors.any? %>
-  <%= comment.errors.count %> errors occured
-  <% comment.errors.full_messages.each do |full_message| %>
-    <li>
-      <%= full_message %>
-    </li>
-  <% end %>
+  <div class="alert">
+    <h4>
+      <%= comment.errors.count %> errors occured
+    </h4>
+    <h6>
+      <% comment.errors.full_messages.each do |full_message| %>
+        <li>
+          <%= full_message %>
+        </li>
+      <% end %>
+    </h6>
+  </div>
 <% end %>
