@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hobbies</title>
+    <title>趣味の間</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
   </head>
 
   <body>
     
-    <header>
+    <header class="bg-warning shadow-sm">
       <%= render 'layouts/header' %>
     </header>
     
-    <main>
+    <main class="p-5">
+      
+      <p class="notice m-1">
+        <%= notice %>
+      </p>
+      
+      <p class="alert m-1">
+        <%= alert %>
+      </p>
+      
       <%= yield %>
+      
     </main>
     
   </body>
+  
+  <footer class="fixed-bottom pmt-5 bg-dark text-white shadow-sm">
+    <p class="text-center">趣味の間</p>
+  </footer>
+  
 </html>

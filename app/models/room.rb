@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :favorite_rooms, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, {presence: true, length: {maximum: 15}}
 
   def favorited_by?(user)
     favorite_rooms.where(user_id: user.id).exists?

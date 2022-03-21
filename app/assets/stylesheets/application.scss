@@ -13,4 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+.alert {
+  color: red;
+}
+
+.notice {
+  color: green;
+}
+
+
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';

@@ -5,10 +5,9 @@ class Message < ApplicationRecord
   has_many :favorite_messages, dependent: :destroy
   attachment :post_image
 
-  validates :words, presence: true
-  validates :words, length: { maximum: 150 }
-
+  validates :words, {presence: true, length: { maximum: 150 }}
   def favorited_by?(user)
     favorite_messages.where(user_id: user.id).exists?
   end
+  
 end

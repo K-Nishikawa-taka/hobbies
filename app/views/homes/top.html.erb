@@ -2,7 +2,7 @@
 
   <div class="row p-2">
     <div class="col-12">
-      <h1 class="text-center">トップページ</h1>
+      <h1 class="text-center">趣味の間</h1>
     </div>
   </div>
 
@@ -13,6 +13,18 @@
         会員登録したらまずはお気に入りのジャンルを見つけて、投稿してみましょう。
       </p>
     </div>
+  </div>
+  
+  <div class="row mt-4">
+
+      <div class="offset-4 col-2 text-center">
+        <%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary" %>
+      </div>
+
+      <div class="col-2 text-center">
+        <%= link_to 'ログイン', new_user_session_path, class: "btn btn-success" %>
+      </div>
+
   </div>
   
   <div class="row my-4">
@@ -30,18 +42,5 @@
     </div>
     
   </div>
-
-  <div class="row mt-4">
-
-      <div class="offset-4 col-2 text-center">
-        <%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary" %>
-      </div>
-
-      <div class="col-2 text-center">
-        <%= link_to 'ログイン', new_user_session_path, class: "btn btn-success" %>
-      </div>
-
-  </div>
-  
 
 </div>

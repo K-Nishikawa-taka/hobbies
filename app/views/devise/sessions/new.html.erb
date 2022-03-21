@@ -6,12 +6,6 @@
   
   </div>
     
-  <div class="row mt-2">
-    
-    <%= flash[:notice] %>
-
-  </div>
-
   <div class="row m-2">
 
     <%= form_with model: @user, url: user_session_path, local: true do |f| %>
