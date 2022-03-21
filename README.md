@@ -21,6 +21,10 @@
 自分の趣味について話すとき、同じ趣味を持つ人を探すとき、その活動の様子を見るとき。
 
 ### 設計書
+ワイヤーフレーム：https://drive.google.com/file/d/1hb6UjqtvGUthNO2-0No5kGuRH9wGQB0U/view?usp=sharing
+画面遷移図：https://drive.google.com/file/d/1HNYDUSjRsi_03GP0LlPMRQaBK1EC5PBK/view?usp=sharing
+ER図：https://drive.google.com/file/d/1vaLFiA-MjNGybJDx1j0ySixY8Sl1jRYA/view?usp=sharing
+テーブル定義書：https://docs.google.com/spreadsheets/d/1duvzKbzyMEsN5e5R8RU1LOlKYJ53OYKtnDPGxa5_ObI/edit?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/143SSRUrR3NT1PgsV8MGrD3DXEkzDQwTnaOH6EPhFNwg/edit?usp=sharing
