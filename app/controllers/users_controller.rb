@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       @users = User.all
     end
   end
-
+  
   def confirm
   end
 

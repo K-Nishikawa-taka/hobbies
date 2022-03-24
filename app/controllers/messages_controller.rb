@@ -26,6 +26,10 @@ class MessagesController < ApplicationController
       redirect_to request.refer
     end
   end
+  
+  def time_line
+    @messages = Message.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
+  end
 
   def favorite_users
     @message = Message.find(params[:id])
