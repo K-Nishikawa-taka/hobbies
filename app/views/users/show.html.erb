@@ -82,6 +82,13 @@
         </tr>
       </table>
 
+      <% if current_user.admin? %>
+      <% elsif @user == current_user %>
+        <div class="mb-2">
+          <%= link_to 'タイムライン', time_line_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
       <% if @user == current_user %>
         <div>
           <%= link_to '編集', edit_user_path(current_user), class: "btn btn-success" %>
@@ -89,7 +96,7 @@
       <% else %>
         <%= render 'relationships/follow_button', user: @user %>
       <% end %>
-
+      
     </div>
 
     <div class="col-6 offset-md-1 py-5">
@@ -102,6 +109,10 @@
         <% end %>
       </div>
 
+    </div>
+    
+    <div>
+      <%= paginate @messages, theme: 'twitter-bootstrap-4' %>
     </div>
 
   </div>

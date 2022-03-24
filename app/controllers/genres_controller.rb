@@ -1,6 +1,6 @@
 class GenresController < ApplicationController
   def index
-    @genres = Genre.all.order(updated_at: :desc)
+    @genres = Genre.page(params[:page]).order(updated_at: :desc)
     @genre = Genre.new
   end
 
@@ -16,13 +16,13 @@ class GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @rooms = @genre.rooms.all.order(updated_at: :desc)
+    @rooms = @genre.rooms.page(params[:page]).order(updated_at: :desc)
     @room = Room.new
   end
 
   def members
     @genre = Genre.find(params[:id])
-    @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).all
+    @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).page(params[:page])
   end
 
   # 管理者のみが使用可能
