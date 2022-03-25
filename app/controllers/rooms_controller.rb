@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   
   def index
-    @rooms = Room.all.order(updated_at: :desc)
+    @rooms = Room.page(params[:page]).order(updated_at: :desc)
   end
 
   def create
@@ -19,12 +19,12 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @message = Message.new
-    @messages = @room.messages.all.order(created_at: :desc)
+    @messages = @room.messages.page(params[:page]).order(created_at: :desc)
   end
 
   def members
     @room = Room.find(params[:id])
-    @favorite_rooms = FavoriteRoom.where(room_id: @room.id).all
+    @favorite_rooms = FavoriteRoom.where(room_id: @room.id).page(params[:page])
   end
 
   # 管理者のみが使用可能

@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @room = Room.find(params[:room_id])
     @message = Message.find(params[:message_id])
     @comment = Comment.find_by(id: params[:id])
-    if @comment.user == current_user || current_user.admin == true
+    if ( @comment.user == current_user ) || ( current_user.admin == true )
       @comment.destroy
       redirect_to room_message_path(@room.id, @message.id)
     else
