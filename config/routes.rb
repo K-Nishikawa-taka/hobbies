@@ -43,8 +43,10 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :notifications, only: :index
-
+  #タイムライン
+  get 'time_line' => 'messages#time_line', as: 'time_line'
+  
+  #検索結果一覧画面
   get 'search' => 'searches#search', as: 'search'
   
 end

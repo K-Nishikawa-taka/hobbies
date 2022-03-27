@@ -57,4 +57,8 @@
     <%= link_to '投稿に戻る', room_message_path(@message.room.id, @message.id), class: "btn btn-secondary" %>
   </div>
   
+  <div>
+    <%= paginate @favorite_messages, theme: 'twitter-bootstrap-4' %>
+  </div>
+  
 </div>

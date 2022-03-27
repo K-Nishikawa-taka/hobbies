@@ -10,8 +10,6 @@
 
     <div class="col-4">
       
-      <%= render 'rooms/error', room: @room %>
-
       <%= render 'rooms/new', room: @room,  genre: @genre %>
 
       <div class="mx-auto mt-3">
@@ -56,6 +54,10 @@
           <% end %>
         </tbody>
       </table>
+      
+      <div class="pagination justify-content-center">
+        <%= paginate @rooms, theme: 'twitter-bootstrap-4' %>
+      </div>
 
     </div>
 

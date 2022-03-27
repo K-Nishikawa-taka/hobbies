@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @messages = @user.messages.all.order(created_at: :desc)
+    @messages = @user.messages.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         redirect_to user_path(@user.id)
       else
-        render :edit
+        flash[:danger] = @user.errors.full_messages
+        redirect_to edit_user_path(@user.id)
       end
     else
       redirect_to user_path(@user.id)
@@ -29,22 +30,24 @@ class UsersController < ApplicationController
 
   def favorite_genres
     @user = User.find(params[:id])
-    @favorite_genres = FavoriteGenre.where(user_id: @user.id).all.order(created_at: :desc)
+    @favorite_genres = FavoriteGenre.where(user_id: @user.id).page(params[:page]).order(created_at: :desc)
   end
 
   def favorite_rooms
     @user = User.find(params[:id])
-    @favorite_rooms = FavoriteRoom.where(user_id: @user.id).all.order(created_at: :desc)
+    @favorite_rooms = FavoriteRoom.where(user_id: @user.id).page(params[:page]).order(created_at: :desc)
   end
 
   def favorite_messages
     @user = User.find(params[:id])
-    @favorite_messages = FavoriteMessage.where(user_id: @user.id).all.order(created_at: :desc)
+    @favorite_messages = FavoriteMessage.where(user_id: @user.id).page(params[:page]).order(created_at: :desc)
   end
 
   def index
     if current_user.admin
-      @users = User.all
+      @users = User.page(params[:page])
+    else
+      redirect_to user_path(current_user)
     end
   end
 

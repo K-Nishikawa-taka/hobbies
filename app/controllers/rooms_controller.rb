@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
-  
+
   def index
-    @rooms = Room.all.order(updated_at: :desc)
+    @rooms = Room.page(params[:page]).order(updated_at: :desc)
   end
 
   def create
@@ -9,22 +9,23 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.genre_id = @genre.id
     if @room.save
+      flash[:notice] = "部屋「#{@room.name}」を作成できました"
       redirect_to genre_path(@genre.id)
     else
-      @rooms = Room.all.order(updated_at: :desc)
-      render 'genres/show'
+      flash[:alert] = "名前を入れてください"
+      redirect_to genre_path(@genre.id)
     end
   end
 
   def show
     @room = Room.find(params[:id])
     @message = Message.new
-    @messages = @room.messages.all.order(created_at: :desc)
+    @messages = @room.messages.page(params[:page]).order(created_at: :desc)
   end
 
   def members
     @room = Room.find(params[:id])
-    @favorite_rooms = FavoriteRoom.where(room_id: @room.id).all
+    @favorite_rooms = FavoriteRoom.where(room_id: @room.id).page(params[:page])
   end
 
   # 管理者のみが使用可能

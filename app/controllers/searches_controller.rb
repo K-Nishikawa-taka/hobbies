@@ -4,9 +4,9 @@ class SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == 'Genre'
-      @genres = Genre.looks(params[:key_word]).all.order(updated_at: :desc)
+      @genres = Genre.looks(params[:key_word]).page(params[:page]).order(updated_at: :desc)
     else
-      @rooms = Room.looks(params[:key_word]).all.order(updated_at: :desc)
+      @rooms = Room.looks(params[:key_word]).page(params[:page]).order(updated_at: :desc)
     end
   end
 end

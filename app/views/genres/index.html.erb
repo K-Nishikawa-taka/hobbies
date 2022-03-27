@@ -1,19 +1,17 @@
 <div class="container">
-  
+
   <div class="row p-2">
     <h1>ジャンル一覧</h1>
   </div>
 
   <div class="row p-2">
-  
-    <div class="col-4">
-      <%= render 'error', genre: @genre %>
 
+    <div class="col-4">
       <%= render 'new', genre: @genre %>
     </div>
-    
+
     <div class="col-7 offset-md-1">
-      
+
       <table class="table table-hover table-inverse">
         <thead>
           <th>ジャンル名</th>
@@ -45,6 +43,10 @@
         <% end %>
       </tbody>
     </table>
-    
+
+    <div>
+      <%= paginate @genres, theme: 'twitter-bootstrap-4' %>
+    </div>
+
   </div>
 </div>

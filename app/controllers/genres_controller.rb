@@ -1,28 +1,29 @@
 class GenresController < ApplicationController
   def index
-    @genres = Genre.all.order(updated_at: :desc)
+    @genres = Genre.page(params[:page]).order(updated_at: :desc)
     @genre = Genre.new
   end
 
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
+      flash[:notice] = "ジャンル「#{@genre.name}」を作成できました"
       redirect_to genres_path
     else
-      @genres = Genre.all
-      render :index
+      flash[:alert] = "名前を入れてください"
+      redirect_to genres_path
     end
   end
 
   def show
     @genre = Genre.find(params[:id])
-    @rooms = @genre.rooms.all.order(updated_at: :desc)
+    @rooms = @genre.rooms.page(params[:page]).order(updated_at: :desc)
     @room = Room.new
   end
 
   def members
     @genre = Genre.find(params[:id])
-    @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).all
+    @favorite_genres = FavoriteGenre.where(genre_id: @genre.id).page(params[:page])
   end
 
   # 管理者のみが使用可能
