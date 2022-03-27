@@ -36,14 +36,7 @@
         <div class="row mt-1">
 
           <div class="col-6">
-            <% if current_user == comment.user %>
-              <% if comment.is_read == true %>
-                <p class="pt-1 pl-2">
-                  既読
-                </p>
-              <% end %>
-            <% end %>
-
+            
             <% if comment.user != current_user %>
               <% if current_user == comment.message.user %>
                 <% if comment.is_read == false %>

@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  
+
   def index
     @rooms = Room.page(params[:page]).order(updated_at: :desc)
   end
@@ -9,10 +9,11 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.genre_id = @genre.id
     if @room.save
+      flash[:notice] = "部屋「#{@room.name}」を作成できました"
       redirect_to genre_path(@genre.id)
     else
-      @rooms = Room.all.order(updated_at: :desc)
-      render 'genres/show'
+      flash[:alert] = "名前を入れてください"
+      redirect_to genre_path(@genre.id)
     end
   end
 

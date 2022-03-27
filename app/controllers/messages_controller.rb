@@ -5,10 +5,11 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     @message.room_id = @room.id
     if @message.save
+      flash[:notice] = "投稿できました"
       redirect_to room_path(@room.id)
     else
-      @messages = @room.messages.all.order(created_at: :desc)
-      render 'rooms/show'
+      flash[:alert] = "コメントを入力してください"
+      redirect_to room_path(@room.id)
     end
   end
 
@@ -22,6 +23,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if ( @message.user == current_user ) || ( current_user.admin == true )
       @message.destroy
+      flash[:notice] = "メッセージが削除されました"
       redirect_to request.referer
     else
       redirect_to request.referer
