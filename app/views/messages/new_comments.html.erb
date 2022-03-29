@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="row mt-5">
+
+    <h1>未読コメントあり投稿一覧</h1>
+
+  </div>
+
+  <div class="mt-5">
+
+    <div class="col-8">
+      <div class="card-list-container">
+
+        <% @messages.each do |message| %>
+          <% message.comments.each do |comment| %>
+            <% if comment.is_read == false %>
+              <%= render 'message', message: comment.message %>
+              <% break %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>

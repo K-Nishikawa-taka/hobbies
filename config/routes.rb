@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   #タイムライン
   get 'time_line' => 'messages#time_line', as: 'time_line'
   
+  #未読ありの
+  get 'new_comments' => 'messages#new_comments', as: 'new_comments'
+  
   #検索結果一覧画面
   get 'search' => 'searches#search', as: 'search'
   
