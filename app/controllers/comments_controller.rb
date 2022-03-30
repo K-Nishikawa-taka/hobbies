@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.is_read = true
     comment.save
-    redirect_to room_message_path(comment.message.room.id, comment.message.id)
+    redirect_to request.referer
   end
 
   private
