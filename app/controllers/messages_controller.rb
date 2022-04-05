@@ -7,8 +7,8 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to room_path(@room.id)
     else
-      @messages = @room.messages.all.order(created_at: :desc)
-      render 'rooms/show'
+      flash[:alert] = "投稿できませんでした"
+      redirect_to room_path(@room.id)
     end
   end
 

@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     if @comment.save
      redirect_to room_message_path(@room.id, @message.id)
     else
-      render 'messages/show'
+      
+      redirect_to room_message_path(@room.id, @message.id)
     end
   end
 
