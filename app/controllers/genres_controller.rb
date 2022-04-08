@@ -9,8 +9,8 @@ class GenresController < ApplicationController
     if @genre.save
       redirect_to genres_path
     else
-      flash[:alert] = "登録できませんでした"
-      redirect_to genres_path
+      @genres = Genre.page(params[:page]).order(updated_at: :desc)
+      render :index
     end
   end
 

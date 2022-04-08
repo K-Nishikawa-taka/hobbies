@@ -14,10 +14,6 @@
 
       <%= render 'rooms/new', room: @room,  genre: @genre %>
 
-      <div class="mx-auto mt-3">
-        <%= link_to '参加者一覧', members_genre_path(@genre.id), class: "btn btn-warning" %>
-      </div>
-
       <div>
         <%= render 'favorite_genres/favorite', genre: @genre %>
       </div>

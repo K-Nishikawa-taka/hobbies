@@ -11,8 +11,8 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to genre_path(@genre.id)
     else
-      flash[:alert] = "登録できませんでした"
-      redirect_to genre_path(@genre.id)
+      @rooms = @genre.rooms.page(params[:page]).order(updated_at: :desc)
+      render 'genres/show'
     end
   end
 
