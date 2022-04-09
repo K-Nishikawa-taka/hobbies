@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
     @message = Message.find(params[:message_id])
     @comment = current_user.comments.new(comment_params)
     @comment.message_id = @message.id
+    if @comment.message.user == current_user
+      @comment.is_read = true
+    end
     if @comment.save
      redirect_to room_message_path(@room.id, @message.id)
     else
