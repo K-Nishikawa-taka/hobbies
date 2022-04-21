@@ -26,6 +26,10 @@
           <td><%= @user.introduction %></td>
         </tr>
         <tr>
+          <td>投稿数</td>
+          <td class="text-center"><%= @user.messages.count %></td>
+        </tr>
+        <tr>
           <td>お気に入りジャンル</td>
           <td class="text-center">
             <%= link_to favorite_genres_user_path(@user.id) do %>
@@ -96,7 +100,7 @@
       <% else %>
         <%= render 'relationships/follow_button', user: @user %>
       <% end %>
-      
+
     </div>
 
     <div class="col-6 offset-md-1 py-5">
@@ -110,7 +114,7 @@
       </div>
 
     </div>
-    
+
     <div>
       <%= paginate @messages, theme: 'twitter-bootstrap-4' %>
     </div>
