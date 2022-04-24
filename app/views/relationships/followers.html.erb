@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>
-    <%= link_to user_path(@user.id) %>
+    <%= link_to user_path(@user.id) do %>
       <%= @user.name %>
     <% end %>
     のフォロワー一覧

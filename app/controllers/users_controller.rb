@@ -41,6 +41,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorite_messages = FavoriteMessage.where(user_id: @user.id).page(params[:page]).order(created_at: :desc)
   end
+  
+  def most_favorited
+  end
 
   def index
     if current_user.admin

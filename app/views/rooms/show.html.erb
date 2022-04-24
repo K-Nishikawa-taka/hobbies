@@ -1,37 +1,44 @@
 <div class="container">
-  
+
   <div class="row mt-2">
-    
+
     <h1><%= @room.name %>の投稿一覧　(<%= @messages.count %>)件</h1>
-    
+
   </div>
-  
+
   <div class="row mt-2">
-    
+
     <div class="col-4">
-    
+
       <%= render 'messages/error', message: @message %>
-      
+
       <%= render 'messages/new', message: @message, room: @room %>
-      
-      <div class="mt-3">  
+
+      <div class="mt-3">
         <%= render 'favorite_rooms/favorite', room: @room %>
       </div>
-      
+
+      <div class="mt-3">
+        ジャンル：
+        <%= link_to genre_path(@room.genre) do %>
+          <%= @room.genre.name %>
+        <% end %>
+      </div>
+
     </div>
-    
+
     <div class="col-6 offset-md-1">
-    
+
       <% @messages.each do |message| %>
         <%= render 'messages/message', message: message %>
       <% end %>
-      
+
     </div>
-    
+
     <div>
       <%= paginate @messages, theme: 'twitter-bootstrap-4' %>
     </div>
-  
+
   </div>
 
 </div>
