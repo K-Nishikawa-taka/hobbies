@@ -6,6 +6,7 @@ class Message < ApplicationRecord
   attachment :post_image
 
   validates :words, {presence: true, length: { maximum: 150 }}
+  
   def favorited_by?(user)
     favorite_messages.where(user_id: user.id).exists?
   end
