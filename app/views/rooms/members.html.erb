@@ -1,11 +1,17 @@
 <div class="container">
-  
+
   <div class="row mt-2">
 
-    <h1><%= @room.name %>をお気に入りしたユーザー一覧</h1>
-    
+    <h1>
+      <%= link_to room_path(@room.id) do %>
+        <%= @room.name %>
+      <% end %>
+      をお気に入りしたユーザー一覧
+      (<%= @room.favorite_rooms.count %>)
+    </h1>
+
   </div>
-  
+
   <div class="row mt-2">
 
     <table class="table table-hover table-inverse">
@@ -50,11 +56,11 @@
        <% end %>
       </tbody>
     </table>
-    
+
     <div>
       <%= paginate @favorite_rooms, theme: 'twitter-bootstrap-4' %>
     </div>
-  
+
   </div>
 
 </div>

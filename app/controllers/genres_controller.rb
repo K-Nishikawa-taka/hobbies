@@ -10,8 +10,8 @@ class GenresController < ApplicationController
       flash[:notice] = "ジャンル「#{@genre.name}」を作成できました"
       redirect_to genres_path
     else
-      flash[:alert] = "名前を入れてください"
-      redirect_to genres_path
+      @genres = Genre.page(params[:page]).order(updated_at: :desc)
+      render :index
     end
   end
 

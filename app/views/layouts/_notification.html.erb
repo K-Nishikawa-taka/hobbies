@@ -2,7 +2,9 @@
 <% current_user.messages.each do |message| %>
   <% message.comments.each do |comment| %>
     <% if comment.is_read == false %>
-      <p>未読あり</p>
+      <%= link_to new_comments_path do %>
+        <p>未読あり</p>
+      <% end %>
       <% is_break = true %>
       <% break %>
     <% end %>

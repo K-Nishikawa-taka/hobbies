@@ -4,14 +4,13 @@ class CommentsController < ApplicationController
     @message = Message.find(params[:message_id])
     @comment = current_user.comments.new(comment_params)
     @comment.message_id = @message.id
-    if @message.user_id == current_user.id
+    if @comment.message.user == current_user
       @comment.is_read = true
     end
     if @comment.save
       flash[:notice] = "返信が送信されました"
       redirect_to room_message_path(@room.id, @message.id)
     else
-      flash[:alert] = "コメントを入力してください"
       redirect_to room_message_path(@room.id, @message.id)
     end
   end
@@ -33,8 +32,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.is_read = true
     comment.save
-    flash[:notice] = "返信を既読しました"
-    redirect_to room_message_path(comment.message.room.id, comment.message.id)
+    redirect_to request.referer
   end
 
   private

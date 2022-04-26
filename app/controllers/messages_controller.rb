@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
       flash[:notice] = "投稿できました"
       redirect_to room_path(@room.id)
     else
-      flash[:alert] = "コメントを入力してください"
-      redirect_to room_path(@room.id)
+      @messages = @room.messages.page(params[:page]).order(created_at: :desc)
+      render 'rooms/show'
     end
   end
 
@@ -23,8 +23,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if ( @message.user == current_user ) || ( current_user.admin == true )
       @message.destroy
-      flash[:notice] = "メッセージが削除されました"
-      redirect_to request.referer
+      redirect_to room_path(@message.room.id)
     else
       redirect_to request.referer
     end
@@ -32,6 +31,10 @@ class MessagesController < ApplicationController
 
   def time_line
     @messages = Message.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).order(created_at: :desc)
+  end
+  
+  def new_comments
+    @messages = current_user.messages.order(created_at: :desc)
   end
 
   def favorite_users

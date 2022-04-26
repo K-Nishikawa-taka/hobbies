@@ -2,7 +2,13 @@
 
   <div class="row mt-2">
 
-    <h1><%= @genre.name %>をお気に入りしたユーザー一覧</h1>
+    <h1>
+      <%= link_to genre_path(@genre.id) do %>
+        <%= @genre.name %>
+      <% end %>
+      をお気に入りしたユーザー一覧
+      (<%= @genre.favorite_genres.count %>)
+    </h1>
 
   </div>
 

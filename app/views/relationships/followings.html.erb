@@ -1,6 +1,12 @@
 <div class="container">
 
-  <h1><%= @user.name %>のフォロー一覧</h1>
+  <h1>
+    <%= link_to user_path(@user.id) do %>
+      <%= @user.name %>
+    <% end %>
+    のフォロー一覧
+    (<%= @user.followings.count %>)
+  </h1>
   
   <table class="table table-hover table-inverse">
     <thead>

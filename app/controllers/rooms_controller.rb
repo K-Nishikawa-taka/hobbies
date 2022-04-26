@@ -12,8 +12,8 @@ class RoomsController < ApplicationController
       flash[:notice] = "部屋「#{@room.name}」を作成できました"
       redirect_to genre_path(@genre.id)
     else
-      flash[:alert] = "名前を入れてください"
-      redirect_to genre_path(@genre.id)
+      @rooms = @genre.rooms.page(params[:page]).order(updated_at: :desc)
+      render 'genres/show'
     end
   end
 
