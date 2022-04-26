@@ -20,7 +20,8 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         redirect_to user_path(@user.id)
       else
-        render :edit
+        flash[:danger] = @user.errors.full_messages
+        redirect_to edit_user_path(@user.id)
       end
     else
       redirect_to user_path(@user.id)
@@ -48,9 +49,11 @@ class UsersController < ApplicationController
   def index
     if current_user.admin
       @users = User.page(params[:page])
+    else
+      redirect_to user_path(current_user)
     end
   end
-  
+
   def confirm
   end
 

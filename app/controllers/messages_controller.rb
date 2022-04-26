@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     @message.room_id = @room.id
     if @message.save
+      flash[:notice] = "投稿できました"
       redirect_to room_path(@room.id)
     else
       @messages = @room.messages.page(params[:page]).order(created_at: :desc)

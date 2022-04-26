@@ -7,6 +7,7 @@ class GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
+      flash[:notice] = "ジャンル「#{@genre.name}」を作成できました"
       redirect_to genres_path
     else
       @genres = Genre.page(params[:page]).order(updated_at: :desc)

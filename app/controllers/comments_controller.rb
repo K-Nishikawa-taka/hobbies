@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
       @comment.is_read = true
     end
     if @comment.save
-     redirect_to room_message_path(@room.id, @message.id)
+      flash[:notice] = "返信が送信されました"
+      redirect_to room_message_path(@room.id, @message.id)
     else
-      
       redirect_to room_message_path(@room.id, @message.id)
     end
   end
@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     if ( @comment.user == current_user ) || ( current_user.admin == true )
       @comment.destroy
+      flash[:notice] = "返信が削除されました"
       redirect_to room_message_path(@room.id, @message.id)
     else
       redirect_to room_message_path(@room.id, @message.id)
