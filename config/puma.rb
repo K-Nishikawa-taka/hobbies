@@ -60,3 +60,5 @@ if Rails.env.production?
   # デーモン
   daemonize
 end
+
+worker_timeout 600
