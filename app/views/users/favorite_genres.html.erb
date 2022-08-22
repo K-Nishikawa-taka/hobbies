@@ -1,6 +1,12 @@
 <div class="container">
 
-  <h1><%= @user.name %>のお気に入りジャンル一覧</h1>
+  <h1>
+    <%= link_to user_path(@user.id) do %>
+      <%= @user.name %>
+    <% end %>
+    のお気に入りジャンル一覧
+    (<%= @user.favorite_genres.count %>)
+  </h1>
 
   <table class="table table-hover table-inverse">
     <thead>
@@ -26,5 +32,9 @@
       <% end %>
     </tbody>
   </table>
+
+  <div>
+    <%= paginate @favorite_genres, theme: 'twitter-bootstrap-4' %>
+  </div>
 
 </div>

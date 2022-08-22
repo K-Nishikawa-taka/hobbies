@@ -1,13 +1,19 @@
 <div class="container">
-  
+
   <div class="row mt-2">
 
-    <h1><%= @genre.name %>をお気に入りしたユーザー一覧</h1>
-    
+    <h1>
+      <%= link_to genre_path(@genre.id) do %>
+        <%= @genre.name %>
+      <% end %>
+      をお気に入りしたユーザー一覧
+      (<%= @genre.favorite_genres.count %>)
+    </h1>
+
   </div>
-  
+
   <div class="row mt-2">
-  
+
     <table class="table table-hover table-inverse">
       <thead>
         <th></th>
@@ -42,13 +48,17 @@
               <%= link_to 'お気に入り部屋', favorite_rooms_user_path(favorite_genre.user.id) %>
             </td>
             <td>
-                <%= render 'relationships/follow_button', user: favorite_genre.user %>
+              <%= render 'relationships/follow_button', user: favorite_genre.user %>
             </td>
           </tr>
        <% end %>
       </tbody>
     </table>
-    
+
+    <div>
+      <%= paginate @favorite_genres, theme: 'twitter-bootstrap-4' %>
+    </div>
+
   </div>
 
 </div>

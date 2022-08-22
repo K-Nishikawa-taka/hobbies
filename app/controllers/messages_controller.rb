@@ -5,9 +5,10 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     @message.room_id = @room.id
     if @message.save
+      flash[:notice] = "投稿できました"
       redirect_to room_path(@room.id)
     else
-      @messages = @room.messages.all.order(created_at: :desc)
+      @messages = @room.messages.page(params[:page]).order(created_at: :desc)
       render 'rooms/show'
     end
   end
@@ -15,21 +16,30 @@ class MessagesController < ApplicationController
   def show
     @message = Message.find(params[:id])
     @comment = Comment.new
+    @comments = @message.comments.page(params[:page])
   end
 
   def destroy
     @message = Message.find(params[:id])
-    if @message.user == current_user || current_user.admin == true
+    if ( @message.user == current_user ) || ( current_user.admin == true )
       @message.destroy
-      redirect_to request.referer
+      redirect_to room_path(@message.room.id)
     else
-      redirect_to request.refer
+      redirect_to request.referer
     end
+  end
+
+  def time_line
+    @messages = Message.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).order(created_at: :desc)
+  end
+  
+  def new_comments
+    @messages = current_user.messages.order(created_at: :desc)
   end
 
   def favorite_users
     @message = Message.find(params[:id])
-    @favorite_messages = FavoriteMessage.where(message_id: @message.id)
+    @favorite_messages = FavoriteMessage.where(message_id: @message.id).page(params[:page])
   end
 
   private

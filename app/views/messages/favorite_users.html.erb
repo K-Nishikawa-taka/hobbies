@@ -1,13 +1,16 @@
 <div class="container">
-  
+
   <div class="row mt-2">
 
-    <h1>お気に入りしたユーザー</h1>
-    
+    <h1>
+      お気に入りしたユーザー一覧
+      (<%= @message.favorite_messages.count %>)
+    </h1>
+
   </div>
-  
+
   <div class="row mt-2">
-  
+
     <table class="table table-hover table-inverse">
       <thead>
         <th></th>
@@ -50,11 +53,15 @@
         <% end %>
       </tbody>
     </table>
-    
+
   </div>
-    
+
   <div class="mt-1">
     <%= link_to '投稿に戻る', room_message_path(@message.room.id, @message.id), class: "btn btn-secondary" %>
   </div>
-  
+
+  <div>
+    <%= paginate @favorite_messages, theme: 'twitter-bootstrap-4' %>
+  </div>
+
 </div>

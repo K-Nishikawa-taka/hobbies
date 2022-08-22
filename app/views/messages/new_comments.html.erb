@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="row mt-5">
+
+    <h1>未読コメント一覧</h1>
+
+  </div>
+
+  <div class="mt-5">
+
+    <div class="col-8">
+      
+      <% @messages.each do |message| %>
+        <% no_read_comment = false %>
+        <% message.comments.each do |comment| %>
+          <% if comment.is_read == false %>
+            <%= render 'message', message: comment.message %>
+            <% no_read_comment = true %>
+          <% end %>
+          <% if no_read_comment == true %>
+            <% message.comments.each do |comment| %>
+              <% if comment.is_read == false %>
+                <%= render 'comments/comment', comment: comment %>
+              <% end %>
+            <% end %>
+            <% break %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+<% if false %>
+  未読コメント一覧の実装方法
+  1.current_userの投稿を一つずつ新しい方から参照
+  2.未読コメントフラグを作る
+  3.投稿のコメントを一つずつ参照
+  4.未読コメントでなければ次のコメントを参照
+  5.未読コメントの場合、その未読コメントの親投稿を表示、未読フラグをtrueにする
+  6.未読フラグがtrueの場合、その投稿に付いた未読コメントを表示
+  7.次の投稿を参照する
+  ※breakの意味は一度未読コメントを見つけた投稿を再表示しないため
+<% end %>
+
+

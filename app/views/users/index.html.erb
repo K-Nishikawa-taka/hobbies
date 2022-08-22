@@ -1,7 +1,10 @@
 <div class="container">
 
   <% if current_user.admin? %>
-    <h1>ユーザー一覧</h1>
+    <h1>
+      ユーザー一覧
+      (<%= @users.count %>)
+    </h1>
     <table class="table table-hover table-inverse">
       <thead>
         <th></th>
@@ -47,6 +50,9 @@
         <% end %>
       </tbody>
     </table>
+    <div>
+      <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+    </div>
   <% end %>
 
 </div>

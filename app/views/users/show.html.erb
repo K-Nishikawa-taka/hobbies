@@ -26,6 +26,10 @@
           <td><%= @user.introduction %></td>
         </tr>
         <tr>
+          <td>投稿数</td>
+          <td class="text-center"><%= @user.messages.count %></td>
+        </tr>
+        <tr>
           <td>お気に入りジャンル</td>
           <td class="text-center">
             <%= link_to favorite_genres_user_path(@user.id) do %>
@@ -81,6 +85,13 @@
           </td>
         </tr>
       </table>
+      
+      <% if current_user.admin? %>
+      <% elsif @user == current_user %>
+        <div class="mb-2">
+          <%= link_to 'タイムライン', time_line_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
 
       <% if @user == current_user %>
         <div>
@@ -102,6 +113,10 @@
         <% end %>
       </div>
 
+    </div>
+
+    <div>
+      <%= paginate @messages, theme: 'twitter-bootstrap-4' %>
     </div>
 
   </div>
