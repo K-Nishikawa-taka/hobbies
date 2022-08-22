@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <div class="row p-2">
     <h1>ジャンル一覧</h1>
   </div>
@@ -7,11 +7,9 @@
   <div class="row p-2">
 
     <div class="col-4">
-
-      <%= render 'error', genre: @genre %>
+      <%= render 'error', message: @genre %>
 
       <%= render 'new', genre: @genre %>
-      
     </div>
 
     <div class="col-7 offset-md-1">
@@ -47,10 +45,6 @@
         <% end %>
       </tbody>
     </table>
-
-    <div>
-      <%= paginate @genres, theme: 'twitter-bootstrap-4' %>
-    </div>
 
   </div>
 </div>
